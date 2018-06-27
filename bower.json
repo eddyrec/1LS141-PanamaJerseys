@@ -1,0 +1,21 @@
+{
+  "name": "panamajerseys",
+  "description": "Proyecto Final Desarrollo 9 1LS141",
+  "main": "index.js",
+  "authors": [
+    "Dominguez-Dudley"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1"
+  }
+}
