@@ -308,8 +308,8 @@ textarea.input {
 ===========================================================*/
 
 #header {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /*----------------------------*\
@@ -345,7 +345,7 @@ textarea.input {
 }
 
 .header-logo .logo>img {
-  width: 100%;
+  /* width: 100%; */
   max-height: 70px;
 }
 
