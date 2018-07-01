@@ -1283,6 +1283,7 @@ textarea.input {
 #product-view {
   margin-top: 10px;
   margin-bottom: 15px;
+  height: 25%;
 }
 
 #product-view .product-view.slick-slide {
