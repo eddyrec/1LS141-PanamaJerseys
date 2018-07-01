@@ -10,6 +10,11 @@ router.get('/login', function(req, res){
 	res.render('login');
 });
 
+router.get('/registro', function(req, res){
+	res.render('registro');
+});
+
+
 router.get('/greet/:name', function(req, res){
 	res.render('greetAPerson', {
 		name: req.params.name,

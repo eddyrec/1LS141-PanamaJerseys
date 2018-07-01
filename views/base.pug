@@ -1,13 +1,13 @@
 doctype html(lang='en')
 head
     meta(charset='utf-8')
-    |     
+         
     meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    |     
+         
     meta(name='description', content='')
-    |     
+         
     meta(name='author', content='')
-    |     
+         
     title Shop Homepage - Start Bootstrap Template
     // Bootstrap core CSS
     link(href='/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
@@ -46,11 +46,10 @@ head
     link(rel='stylesheet', type='text/css', href='/vendor/daterangepicker/daterangepicker.css')
     // ===============================================================================================
     link(rel='stylesheet', type='text/css', href='/css/util.css')
-    |     
-    link(rel='stylesheet', type='text/css', href='/css/main.css')
-    // ===============================================================================================
-  |   
-  body
+     
+    block head
+    
+body
     header
       // header
       #header
@@ -58,7 +57,7 @@ head
           .pull-left
             // Logo
             .header-logo
-              a.logo(href='#')
+              a.logo(href='/')
                 img(src='/img/logo-bandera.png', alt='Logo')
             // /Logo
             // Search
@@ -89,9 +88,9 @@ head
                     | Mi Cuenta 
                     i.fa.fa-caret-down
                 | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                a.text-uppercase(href='login.html') Log-In
+                a.text-uppercase(href='/login') Log-In
                 |  / 
-                a.text-uppercase(href='#') Crear Cuenta
+                a.text-uppercase(href='/registro') Crear Cuenta
                 | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
                 ul.custom-menu
                   li
@@ -220,7 +219,8 @@ head
         // /NAVIGATION
         .row  
         // Aqui Adentro va la Comida
-        .wrap-login100.mt-5.mb-5
+        block content
+        
         // Con este Div se cierra la Comida
         // Footer
         footer.py-5.bg-dark
