@@ -150,7 +150,7 @@ body
                             span.qty x3
                           | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
                           h2.product-name
-                            a(href='#') Product Name Goes Here
+                            a(href='/producto') Product Name Goes Here
                         | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
                         button.cancel-btn
                           i.fa.fa-trash
@@ -165,7 +165,7 @@ body
                             span.qty x3
                           | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
                           h2.product-name
-                            a(href='#') Product Name Goes Here
+                            a(href='/producto') Product Name Goes Here
                         | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
                         button.cancel-btn
                           i.fa.fa-trash
@@ -223,9 +223,115 @@ body
         
         // Con este Div se cierra la Comida
         // Footer
-        footer.py-5.bg-dark
-          .container
-            p.m-0.text-center.text-white Copyright &copy; Your Website 2017
+       
+    footer#footer.section.section-grey
+      // container
+      .container
+        // row
+        .row
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              // footer logo
+              .footer-logo
+                a.logo(href='#')
+                  img(src='/img/logo.png', alt='')
+              // /footer logo
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+              // footer social
+              ul.footer-social
+                li
+                  a(href='#')
+                    i.fa.fa-facebook
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#')
+                    i.fa.fa-twitter
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#')
+                    i.fa.fa-instagram
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#')
+                    i.fa.fa-google-plus
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#')
+                    i.fa.fa-pinterest
+              // /footer social
+          // /footer widget
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header My Account
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              ul.list-links
+                li
+                  a(href='#') My Account
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') My Wishlist
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Compare
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Checkout
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Login
+          // /footer widget
+          .clearfix.visible-sm.visible-xs
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Customer Service
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              ul.list-links
+                li
+                  a(href='#') About Us
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Shiping &amp; Return
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Shiping Guide
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') FAQ
+          // /footer widget
+          // footer subscribe
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Stay Connected
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              form
+                .form-group
+                  input.input(placeholder='Enter Email Address')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                button.primary-btn Join Newslatter
+          // /footer subscribe
+        // /row
+        hr
+        // row
+        .row
+          .col-md-8.col-md-offset-2.text-center
+            // footer copyright
+            .footer-copyright
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              | Copyright &copy;
+              script.
+                document.write(new Date().getFullYear());
+              |  All rights reserved | This template is made with 
+              i.fa.fa-heart-o(aria-hidden='true')
+              |  by 
+              a(href='https://colorlib.com', target='_blank') Colorlib
+             
+
           // /.container
         // Bootstrap core JavaScript
         // ===============================================================================================

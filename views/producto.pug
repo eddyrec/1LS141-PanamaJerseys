@@ -1,0 +1,567 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    | &#x9;
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    | &#x9;
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    title E-SHOP HTML Template
+    // Google font
+    link(href='https://fonts.googleapis.com/css?family=Hind:400,700', rel='stylesheet')
+    // Bootstrap
+    link(type='text/css', rel='stylesheet', href='/css/bootstrap.min.css')
+    // Slick
+    link(type='text/css', rel='stylesheet', href='/css/slick.css')
+    | &#x9;
+    link(type='text/css', rel='stylesheet', href='/css/slick-theme.css')
+    // nouislider
+    link(type='text/css', rel='stylesheet', href='/css/nouislider.min.css')
+    // Font Awesome Icon
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
+    // Custom stlylesheet
+    link(type='text/css', rel='stylesheet', href='/css/style.css')
+    // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+      | &#x9;&#x9;  
+      script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+body
+    // HEADER
+    header
+      // header
+      #header
+        .container
+          .pull-left
+            // Logo
+            .header-logo
+              a.logo(href='#')
+                img(src='/img/logo-bandera.png', height='70px', alt='')
+            // /Logo
+            // Search
+            .header-search
+              form
+                input.input.search-input(type='text', placeholder='Palabra clave')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                select.input.search-categories
+                  option(value='0') Categorias
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='1') Categoria 1
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='1') Categoria 2
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                button.search-btn
+                  i.fa.fa-search
+            // /Search
+          | &#x9;&#x9;&#x9;&#x9;
+          .pull-right
+            ul.header-btns
+              // Account
+              li.header-account.dropdown.default-dropdown
+                .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+                  .header-btns-icon
+                    i.fa.fa-user-o
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  strong.text-uppercase
+                    | Mi Cuenta 
+                    i.fa.fa-caret-down
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                a.text-uppercase(href='login.html') Log-In
+                |  / 
+                a.text-uppercase(href='#') Crear Cuenta
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                ul.custom-menu
+                  li
+                    a(href='#')
+                      i.fa.fa-user-o
+                      |  Mi Cuenta
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-heart-o
+                      |  Lista de deseado
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-exchange
+                      |  Comparar
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-check
+                      |  Checkout
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-unlock-alt
+                      |  Iniciar Sesion
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-user-plus
+                      |  Crear Cuenta
+              // /Account
+              // Cart
+              li.header-cart.dropdown.default-dropdown
+                a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
+                  .header-btns-icon
+                    i.fa.fa-shopping-cart
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    span.qty 1
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  strong.text-uppercase Mi carrito:
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  br
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  span $99.99
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                .custom-menu
+                  #shopping-cart
+                    .shopping-cart-list
+                      .product.product-widget
+                        .product-thumb
+                          img(src='/img/thumb-product01.jpg', alt='')
+                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        .product-body
+                          h3.product-price
+                            | $32.50 
+                            span.qty x3
+                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                          h2.product-name
+                            a(href='#') Product Name Goes Here
+                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        button.cancel-btn
+                          i.fa.fa-trash
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      .product.product-widget
+                        .product-thumb
+                          img(src='/img/thumb-product01.jpg', alt='')
+                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        .product-body
+                          h3.product-price
+                            | $32.50 
+                            span.qty x3
+                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                          h2.product-name
+                            a(href='#') Product Name Goes Here
+                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        button.cancel-btn
+                          i.fa.fa-trash
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .shopping-cart-btns
+                      button.main-btn View Cart
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      button.primary-btn
+                        | Checkout 
+                        i.fa.fa-arrow-circle-right
+              // /Cart
+              // Mobile nav toggle
+              li.nav-toggle
+                button.nav-toggle-btn.main-btn.icon-btn
+                  i.fa.fa-bars
+              // / Mobile nav toggle
+        // header
+      // container
+    // /HEADER
+    // Page Content
+    .container
+      .row
+        // NAVIGATION
+        #navigation
+          // container
+          .container
+            #responsive-nav
+              // category nav
+              .category-nav.show-on-click
+                span.category-header
+                  | Categorias 
+                  i.fa.fa-list
+                | &#x9;&#x9;&#x9;&#x9;&#x9;
+                ul.category-list
+                  li
+                    a(href='#') Liga X
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li.dropdown.side-dropdown
+                    a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
+                      | Liga Y 
+                      i.fa.fa-caret-down
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .custom-menu
+                      .row
+                        .col-md-4
+                          ul.list-links
+                            li
+                              h3.list-links-title Equipos
+                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                            li
+                              a(href='#') Equipo 1
+                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                            li
+                              a(href='#') Equipo 2
+                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                            li
+                              a(href='#') Equipo 3
+                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                            li
+                              a(href='#') Equipo 4
+                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                            li
+                              a(href='#') Equipo 5
+                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                          hr.hidden-md.hidden-lg
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li.dropdown.side-dropdown
+                    a.dropdown.mega-dropdown
+                      a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
+                        | Liga Z 
+                        i.fa.fa-caret-down
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      .custom-menu
+                        .row
+                          .col-md-4
+                            ul.list-links
+                              li
+                                h3.list-links-title Equipos
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 1
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 2
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 3
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 4
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 5
+                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                            hr.hidden-md.hidden-lg
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#') Liga XX
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li.dropdown.side-dropdown
+                    a.dropdown.mega-dropdown
+                      a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
+                        | Liga XY 
+                        i.fa.fa-caret-down
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      .custom-menu
+                        .row
+                          .col-md-4
+                            ul.list-links
+                              li
+                                h3.list-links-title Equipos
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 1
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 2
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 3
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 4
+                              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                              li
+                                a(href='#') Equipo 5
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#') Liga XY
+              // /category nav
+              // menu nav
+              .menu-nav
+                span.menu-header
+                  | Menu 
+                  i.fa.fa-bars
+                | &#x9;&#x9;&#x9;&#x9;&#x9;
+                ul.menu-list
+                  li
+                    a(href='#') Incio
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#') Metodo de pago/Entregas
+                  |             &#x9;&#x9;&#x9;
+                  li
+                    a(href='#') Quienes somos
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#') Contactenos
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+              // menu nav
+          // /container
+        // /NAVIGATION
+        // BREADCRUMB
+        #breadcrumb
+          .container
+            ul.breadcrumb
+              li
+                a(href='#') Home
+              | &#x9;&#x9;&#x9;&#x9;
+              li
+                a(href='#') Products
+              | &#x9;&#x9;&#x9;&#x9;
+              li
+                a(href='#') Category
+              | &#x9;&#x9;&#x9;&#x9;
+              li.active Product Name Goes Here
+        // /BREADCRUMB
+        // section
+        .section
+          // container
+          .container
+            // row
+            .row
+              // Product Details
+              .product.product-details.clearfix
+                .col-md-6
+                  #product-main-view
+                    .product-view
+                      img(src='/img/main-product01.jpg', alt='')
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .product-view
+                      img(src='/img/main-product02.jpg', alt='')
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .product-view
+                      img(src='/img/main-product03.jpg', alt='')
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .product-view
+                      img(src='/img/main-product04.jpg', alt='')
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  #product-view
+                    .product-view
+                      img(src='/img/thumb-product01.jpg', alt='')
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .product-view
+                      img(src='/img/thumb-product02.jpg', alt='')
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .product-view
+                      img(src='/img/thumb-product03.jpg', alt='')
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .product-view
+                      img(src='/img/thumb-product04.jpg', alt='')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;
+                .col-md-6
+                  .product-body
+                    .product-label
+                      span New
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      span.sale -20%
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    h2.product-name Product Name Goes Here
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    h3.product-price
+                      | $32.50 
+                      del.product-old-price $45.00
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  p
+                    strong Availability:
+                    |  In Stock
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  p
+                    strong Brand:
+                    |  E-SHOP
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                    | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  .product-options
+                    ul.size-option
+                      li
+                        span.text-uppercase Size:
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      li.active
+                        a(href='#') S
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      li
+                        a(href='#') XL
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      li
+                        a(href='#') SL
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    ul.color-option
+                      li
+                        span.text-uppercase Color:
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      li.active
+                        a(href='#', style='background-color:#475984;')
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      li
+                        a(href='#', style='background-color:#8A2454;')
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      li
+                        a(href='#', style='background-color:#BF6989;')
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      li
+                        a(href='#', style='background-color:#9A54D8;')
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  .product-btns
+                    .qty-input
+                      span.text-uppercase QTY: 
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      input.input(type='number')
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    button.primary-btn.add-to-cart
+                      i.fa.fa-shopping-cart
+                      |  Add to Cart
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .pull-right
+                      button.main-btn.icon-btn
+                        i.fa.fa-heart
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      button.main-btn.icon-btn
+                        i.fa.fa-exchange
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      button.main-btn.icon-btn
+                        i.fa.fa-share-alt
+              | &#x9;&#x9;&#x9;&#x9;&#x9;
+              .col-md-12
+                .product-tab
+                  ul.tab-nav
+                    li.active
+                      a(data-toggle='tab', href='#tab1') Description
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    li
+                      a(data-toggle='tab', href='#tab1') Details
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  .tab-content
+                    #tab1.tab-pane.fade.in.active
+                      p
+                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        | irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          // /Product Details
+        // /row
+      // /container
+    // FOOTER
+    footer#footer.section.section-grey
+      // container
+      .container
+        // row
+        .row
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              // footer logo
+              .footer-logo
+                a.logo(href='#')
+                  img(src='/img/logo.png', alt='')
+              // /footer logo
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+              // footer social
+              ul.footer-social
+                li
+                  a(href='#')
+                    i.fa.fa-facebook
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#')
+                    i.fa.fa-twitter
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#')
+                    i.fa.fa-instagram
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#')
+                    i.fa.fa-google-plus
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#')
+                    i.fa.fa-pinterest
+              // /footer social
+          // /footer widget
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header My Account
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              ul.list-links
+                li
+                  a(href='#') My Account
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') My Wishlist
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Compare
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Checkout
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Login
+          // /footer widget
+          .clearfix.visible-sm.visible-xs
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Customer Service
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              ul.list-links
+                li
+                  a(href='#') About Us
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Shiping &amp; Return
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') Shiping Guide
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                li
+                  a(href='#') FAQ
+          // /footer widget
+          // footer subscribe
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Stay Connected
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              form
+                .form-group
+                  input.input(placeholder='Enter Email Address')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                button.primary-btn Join Newslatter
+          // /footer subscribe
+        // /row
+        hr
+        // row
+        .row
+          .col-md-8.col-md-offset-2.text-center
+            // footer copyright
+            .footer-copyright
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              | Copyright &copy;
+              script.
+                document.write(new Date().getFullYear());
+              |  All rights reserved | This template is made with 
+              i.fa.fa-heart-o(aria-hidden='true')
+              |  by 
+              a(href='https://colorlib.com', target='_blank') Colorlib
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+            // /footer copyright
+        // /row
+      // /container
+    // /FOOTER
+    // jQuery Plugins
+    script(src='/js/jquery.min.js')
+    | &#x9;
+    script(src='/js/bootstrap.min.js')
+    | &#x9;
+    script(src='/js/slick.min.js')
+    | &#x9;
+    script(src='/js/nouislider.min.js')
+    | &#x9;
+    script(src='/js/jquery.zoom.min.js')
+    | &#x9;
+    script(src='/js/main.js')

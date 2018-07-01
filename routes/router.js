@@ -15,6 +15,10 @@ router.get('/registro', function(req, res){
 });
 
 
+router.get('/producto', function(req, res){
+	res.render('producto');
+});
+
 router.get('/greet/:name', function(req, res){
 	res.render('greetAPerson', {
 		name: req.params.name,
