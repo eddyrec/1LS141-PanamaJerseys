@@ -1,0 +1,264 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    |     
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    |     
+    meta(name='description', content='')
+    |     
+    meta(name='author', content='')
+    |     
+    title Shop Homepage - Start Bootstrap Template
+    // Bootstrap core CSS
+    link(href='/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    // Custom styles for this template
+    link(href='/css/shop-homepage.css', rel='stylesheet')
+    // Google font
+    link(href='https://fonts.googleapis.com/css?family=Hind:400,700', rel='stylesheet')
+    // Bootstrap
+    link(type='text/css', rel='stylesheet', href='/css/bootstrap.min.css')
+    // Slick
+    link(type='text/css', rel='stylesheet', href='/css/slick.css')
+    |     
+    link(type='text/css', rel='stylesheet', href='/css/slick-theme.css')
+    // nouislider
+    link(type='text/css', rel='stylesheet', href='/css/nouislider.min.css')
+    // Font Awesome Icon
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
+    // Custom stlylesheet
+    link(type='text/css', rel='stylesheet', href='/css/style.css')
+    // ===============================================================================================
+    link(rel='icon', type='image/png', href='/images/icons/favicon.ico')
+    // ===============================================================================================
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='/fonts/font-awesome-4.7.0/css/font-awesome.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='/vendor/animate/animate.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='/vendor/css-hamburgers/hamburgers.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='/vendor/animsition/css/animsition.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='/vendor/select2/select2.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='/vendor/daterangepicker/daterangepicker.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='/css/util.css')
+    |     
+    link(rel='stylesheet', type='text/css', href='/css/main.css')
+    // ===============================================================================================
+  |   
+  body
+    header
+      // header
+      #header
+        .container
+          .pull-left
+            // Logo
+            .header-logo
+              a.logo(href='#')
+                img(src='/img/logo-bandera.png', alt='Logo')
+            // /Logo
+            // Search
+            .header-search
+              form
+                input.input.search-input(type='text', placeholder='Palabra clave')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                select.input.search-categories
+                  option(value='0') Categorias
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='1') Categoria 1
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='1') Categoria 2
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                button.search-btn
+                  i.fa.fa-search
+            // /Search
+          | &#x9;&#x9;&#x9;&#x9;
+          .pull-right
+            ul.header-btns
+              // Account
+              li.header-account.dropdown.default-dropdown
+                .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+                  .header-btns-icon
+                    i.fa.fa-user-o
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  strong.text-uppercase
+                    | Mi Cuenta 
+                    i.fa.fa-caret-down
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                a.text-uppercase(href='login.html') Log-In
+                |  / 
+                a.text-uppercase(href='#') Crear Cuenta
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                ul.custom-menu
+                  li
+                    a(href='#')
+                      i.fa.fa-user-o
+                      |  Mi Cuenta
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-heart-o
+                      |  Lista de deseado
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-exchange
+                      |  Comparar
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-check
+                      |  Checkout
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-unlock-alt
+                      |  Iniciar Sesion
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+                      i.fa.fa-user-plus
+                      |  Crear Cuenta
+              // /Account
+              // Cart
+              li.header-cart.dropdown.default-dropdown
+                a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
+                  .header-btns-icon
+                    i.fa.fa-shopping-cart
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    span.qty 1
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  strong.text-uppercase Mi carrito:
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  br
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  span $99.99
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                .custom-menu
+                  #shopping-cart
+                    .shopping-cart-list
+                      .product.product-widget
+                        .product-thumb
+                          img(src='/img/thumb-product01.jpg', alt='')
+                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        .product-body
+                          h3.product-price
+                            | $32.50 
+                            span.qty x3
+                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                          h2.product-name
+                            a(href='#') Product Name Goes Here
+                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        button.cancel-btn
+                          i.fa.fa-trash
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      .product.product-widget
+                        .product-thumb
+                          img(src='/img/thumb-product01.jpg', alt='')
+                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        .product-body
+                          h3.product-price
+                            | $32.50 
+                            span.qty x3
+                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                          h2.product-name
+                            a(href='#') Product Name Goes Here
+                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        button.cancel-btn
+                          i.fa.fa-trash
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    .shopping-cart-btns
+                      button.main-btn View Cart
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      button.primary-btn
+                        | Checkout 
+                        i.fa.fa-arrow-circle-right
+              // /Cart
+              // Mobile nav toggle
+              li.nav-toggle
+                button.nav-toggle-btn.main-btn.icon-btn
+                  i.fa.fa-bars
+              // / Mobile nav toggle
+        // header
+      // container
+    // /HEADER
+    // Page Content
+    .container
+      .row
+        // NAVIGATION
+        #navigation
+          // container
+          .container
+            #responsive-nav
+              // menu nav
+              .menu-nav
+                span.menu-header
+                  | Menu 
+                  i.fa.fa-bars
+                | &#x9;&#x9;&#x9;&#x9;&#x9;
+                ul.menu-list
+                  li
+                    a(href='index.html') Incio
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#') Metodo de pago/Entregas
+                  |             
+                  li
+                    a(href='#') Quienes somos
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#') Contactenos
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    a(href='#')
+              // menu nav
+          // /container
+        // /NAVIGATION
+        .row  
+        // Aqui Adentro va la Comida
+        .wrap-login100.mt-5.mb-5
+        // Con este Div se cierra la Comida
+        // Footer
+        footer.py-5.bg-dark
+          .container
+            p.m-0.text-center.text-white Copyright &copy; Your Website 2017
+          // /.container
+        // Bootstrap core JavaScript
+        // ===============================================================================================
+        script(src='/vendor/jquery/jquery-3.2.1.min.js')
+        // ===============================================================================================
+        script(src='/vendor/animsition/js/animsition.min.js')
+        // ===============================================================================================
+        script(src='/vendor/bootstrap/js/popper.js')
+        |     
+        script(src='/vendor/bootstrap/js/bootstrap.min.js')
+        // ===============================================================================================
+        script(src='/vendor/select2/select2.min.js')
+        // ===============================================================================================
+        script(src='/vendor/daterangepicker/moment.min.js')
+        |     
+        script(src='/vendor/daterangepicker/daterangepicker.js')
+        // ===============================================================================================
+        script(src='vendor/countdowntime/countdowntime.js')
+        // ===============================================================================================
+        script(src='/js/main.js')
+        |     
+        script(src='/vendor/jquery/jquery.min.js')
+        |     
+        script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
+        |     
+        script(src='/js/jquery.min.js')
+        |     
+        script(src='/js/bootstrap.min.js')
+        |     
+        script(src='/js/slick.min.js')
+        |     
+        script(src='/js/nouislider.min.js')
+        |     
+        script(src='/js/jquery.zoom.min.js')
+        |     
+        script(src='/js/main.js')

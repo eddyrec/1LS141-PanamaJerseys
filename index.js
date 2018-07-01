@@ -22,14 +22,14 @@ app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 //ROUTES
-let routes = require('./routers/router')
+let routes = require('./routes/router')
 app.use('/', routes)
-app.use(function(req,res, next){
-let error = new Error('Archivo bo encontrado');
-err.status=404;
-next(err);
+// app.use(function(req,res, next){
+// let error = new Error('Archivo bo encontrado');
+// error.status=404;
+// next(error);
 
-} )
+// } )
 
 
 // Open listening port
