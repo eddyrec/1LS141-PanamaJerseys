@@ -1,5 +1,5 @@
 {
-  "name": "panamajerseys",
+  "name": "nodemon",
   "version": "1.0.0",
   "description": "Proyecto Final Desarrollo 9 1LS141",
   "main": "index.js",
@@ -12,7 +12,17 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "mongoose": "^5.1.7",
+    "nodemon": "^1.17.5",
     "pug": "^2.0.3",
     "save": "^2.3.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddyrec/1LS141-PanamaJerseys.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eddyrec/1LS141-PanamaJerseys/issues"
+  },
+  "homepage": "https://github.com/eddyrec/1LS141-PanamaJerseys#readme"
 }
