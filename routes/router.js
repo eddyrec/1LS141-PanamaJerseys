@@ -1,6 +1,8 @@
 
 let express = require('express');
 let router = express.Router();
+let user = require('../models/user');
+let estudiante = require('../models/estudiante')
 // Routes
 router.get('/', function(req, res){
 	res.render('index');
