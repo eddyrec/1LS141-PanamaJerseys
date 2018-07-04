@@ -14,6 +14,7 @@ db.users.insertOne({
     password:'$2a$10$Vx1ebU4cswwEh8vn0MB7leXKvCJJA10UT.XJhbZhvPjNwwbni44yC',
     passConfirm:'$2a$10$Vx1ebU4cswwEh8vn0MB7leXKvCJJA10UT.XJhbZhvPjNwwbni44yC'
 });
+//test test
 // Para hacer un query a la bd y probar que funciona pueden hacer
 // db.estudiantes.find({}).pretty()
 // esto es equivalente a el clasico 'Select * from estudiantes'
