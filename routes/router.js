@@ -101,4 +101,71 @@ router.post('/eliminar', function(req, res, next){
 	  });
 });
 
+
+//ESTATUS PEDIDO cambiar Todo donde dice users
+router.get('/adminstatus',function(req, res, next){
+	if(!req.session.username){
+		res.redirect('/login');
+	}
+	// else 
+	// res.render('adminusr',{usuario:req.session.username, modelo:user});
+	usuarios.findAll(function(error,users){
+		if(error)
+			next(error);
+		else if(!users)
+			users = [];
+		else
+			res.render('adminstatus',{usuario:req.session.username, modelo:users});
+	}); 
+});
+
+//INSERTAR
+router.post('/insertarP', function(req, res, next){
+	usuarios.insert(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.username,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,user){
+		if(error)
+			next(error);
+		else if(user){
+			var err = new Error('orden ya existente');
+			err.status = 401;
+			next(err);}
+		else
+			res.redirect('/adminstatus');
+	  });
+});
+
+// ACTUALIZAR
+router.post('/actualizarP', function(req, res, next){
+	estatus.update(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.username,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
+		console.log(req.body.ordernum);
+		if(error)
+			next(error);
+		else if(!msg){
+			var err = new Error('Orden no existe');
+			err.status = 401;
+			next (err);}
+		res.redirect('/adminstatus');
+		
+	  });
+});
+
+// //ELIMINAR
+router.post('/eliminarP', function(req, res, next){
+	estatus.delete(req.body.ordernum, function(error,msg){
+		if(error)
+			next(error);
+		else if(msg){
+			var err = new Error('usuario no existe');
+			err.status = 401;
+			next(err);
+		}
+		else{
+			console.log('exito');
+			res.redirect('/adminstatus');}
+	  });
+});
+
+
+
+
+
 module.exports = router;
