@@ -22,9 +22,9 @@ router.get('/login', function(req, res){
 	res.render('login');
 });
 
-router.get('/adminusr', function(req, res){
-	res.render('adminusr');
-});
+// router.get('/adminusr', function(req, res){
+// 	res.render('adminusr');
+// });
 
 router.post('/login', function(req, res, next){
 	user.authenticate(req.body.email, req.body.password, function(error,user){
@@ -44,6 +44,8 @@ router.get('/adminusr',function(req, res, next){
 	if(!req.session.username){
 		res.redirect('/login');
 	}
+	else 
+	res.render('adminusr',{usuario:req.session.username, modelo:user});
 	// estudiante.findAll(function(error,users){
 	// 	if(error)
 	// 		next(error);
