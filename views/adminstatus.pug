@@ -22,6 +22,7 @@ block contenido
                             th Direccion 1
                             th Direccion 2
                             th Telefono
+                            th
                             th 
                         tr 
                             -var number = 0;
@@ -30,8 +31,8 @@ block contenido
                                     td #{number+1}  
                                     td #{lista.ordernum}
                                         input#ordernum(type='text' name='ordernum')
-                                    td #{lista.orderstatus}
-                                        input#orderstatus(type='text' name='orderstat')
+                                    td #{lista.orderstat}
+                                        input#orderstat(type='text' name='orderstat')
                                     td #{lista.orderdate}
                                         input#orderdate(type='date' name='orderdate')
                                     td #{lista.usuario}
