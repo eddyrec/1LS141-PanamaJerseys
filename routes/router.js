@@ -3,6 +3,7 @@ let express = require('express');
 let router = express.Router();
 let user = require('../models/user');
 let usuarios = require('../models/usuarios')
+let estados = require('../models/estados')
 
 //LOGIN
 router.get('/', function(req, res){
@@ -109,7 +110,7 @@ router.get('/adminstatus',function(req, res, next){
 	}
 	// else 
 	// res.render('adminusr',{usuario:req.session.username, modelo:user});
-	usuarios.findAll(function(error,users){
+	estados.findAll(function(error,users){
 		if(error)
 			next(error);
 		else if(!users)
@@ -121,7 +122,7 @@ router.get('/adminstatus',function(req, res, next){
 
 //INSERTAR
 router.post('/insertarP', function(req, res, next){
-	usuarios.insert(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.username,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,user){
+	estados.insert(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.username,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,user){
 		if(error)
 			next(error);
 		else if(user){
@@ -135,7 +136,7 @@ router.post('/insertarP', function(req, res, next){
 
 // ACTUALIZAR
 router.post('/actualizarP', function(req, res, next){
-	estatus.update(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.username,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
+	estados.update(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.username,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
 		console.log(req.body.ordernum);
 		if(error)
 			next(error);
@@ -150,7 +151,7 @@ router.post('/actualizarP', function(req, res, next){
 
 // //ELIMINAR
 router.post('/eliminarP', function(req, res, next){
-	estatus.delete(req.body.ordernum, function(error,msg){
+	estados.delete(req.body.ordernum, function(error,msg){
 		if(error)
 			next(error);
 		else if(msg){
