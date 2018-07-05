@@ -155,7 +155,7 @@ router.post('/eliminarP', function(req, res, next){
 		if(error)
 			next(error);
 		else if(msg){
-			var err = new Error('usuario no existe');
+			var err = new Error('orden no existe');
 			err.status = 401;
 			next(err);
 		}

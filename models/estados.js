@@ -50,7 +50,7 @@ estadosSchema.statics.insert = function(ordernum,orderstat,orderdate,usuario,cor
     })   
 }
 estadosSchema.statics.update = function(ordernum,orderstat,orderdate,usuario,correo,direccion1,direccion2,telefono,callback){
-    Estados.findOne({usuario:usuario},'ordernum orderstat orderdate usuario correo direccion1 direccion2 telefono',function(err,user){
+    Estados.findOne({ordernum:ordernum},'ordernum orderstat orderdate usuario correo direccion1 direccion2 telefono',function(err,user){
         if(err)
             return callback(err);
         else if(!user){
@@ -61,9 +61,9 @@ estadosSchema.statics.update = function(ordernum,orderstat,orderdate,usuario,cor
                 if(ordernum)
                     user.ordernum = ordernum;
                 if(orderstat)
-                    user.orderstat=orderstat;
+                    user.orderstat = orderstat;
                 if(orderdate)
-                    user.orderdate=orderdate;
+                    user.orderdate = orderdate;
                 if(usuario)
                     user.usuario = usuario;
                 if(correo)
@@ -83,13 +83,13 @@ estadosSchema.statics.update = function(ordernum,orderstat,orderdate,usuario,cor
     })   
 }
 
-estadosSchema.statics.delete = function(usuario,callback){
-    Estados.findOne({usuario:usuario},'usuario',function(err,users){
+estadosSchema.statics.delete = function(ordernum,callback){
+    Estados.findOne({ordernum:ordernum},'ordernum',function(err,users){
         if(err)
             return callback(err);
         else if(!users)
-            return callback(null,'usuario no existe');
-        Estados.deleteOne({usuario:usuario}, function(err){
+            return callback(null,'ordernum no existe');
+        Estados.deleteOne({ordernum:ordernum}, function(err){
                 if(err)
                     return callback(err);
                 return callback();//Success

@@ -30,7 +30,7 @@ block contenido
                                 form(action='/actualizarP', method='POST')
                                     td #{number+1}  
                                     td #{lista.ordernum}
-                                        input#ordernum(type='text' name='ordernum')
+                                        input#ordernum(type='text' name='ordernum' value=lista.ordernum)
                                     td #{lista.orderstat}
                                         input#orderstat(type='text' name='orderstat')
                                     td #{lista.orderdate}
