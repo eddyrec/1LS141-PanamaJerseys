@@ -44,16 +44,16 @@ router.get('/adminusr',function(req, res, next){
 	if(!req.session.username){
 		res.redirect('/login');
 	}
-	else 
-	res.render('adminusr',{usuario:req.session.username, modelo:user});
-	// estudiante.findAll(function(error,users){
-	// 	if(error)
-	// 		next(error);
-	// 	else if(!users)
-	// 		users = [];
-	// 	else
-	// 		res.render('profile',{usuario:req.session.username, modelo:users});
-	// }); 
+	// else 
+	// res.render('adminusr',{usuario:req.session.username, modelo:user});
+	usuarios.findAll(function(error,users){
+		if(error)
+			next(error);
+		else if(!users)
+			users = [];
+		else
+			res.render('adminusr',{usuario:req.session.username, modelo:users});
+	}); 
 });
 
 //INSERTAR
@@ -66,7 +66,7 @@ router.post('/insertar', function(req, res, next){
 			err.status = 401;
 			next(err);}
 		else
-			res.redirect('/profile');
+			res.redirect('/adminusr');
 	  });
 });
 
@@ -80,7 +80,7 @@ router.post('/actualizar', function(req, res, next){
 			var err = new Error('Usuario no existe');
 			err.status = 401;
 			next (err);}
-		res.redirect('/profile');
+		res.redirect('/adminusr');
 		
 	  });
 });
@@ -97,7 +97,7 @@ router.post('/eliminar', function(req, res, next){
 		}
 		else{
 			console.log('exito');
-			res.redirect('/profile');}
+			res.redirect('/adminusr');}
 	  });
 });
 
