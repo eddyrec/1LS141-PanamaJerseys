@@ -58,7 +58,7 @@ router.get('/adminusr',function(req, res, next){
 
 //INSERTAR
 router.post('/insertar', function(req, res, next){
-	usuarios.insert(req.body.nombre,req.body.apellido,req.body.usuario,req.body.password,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,user){
+	usuarios.insert(req.body.nombre,req.body.apellido,req.body.usuario,req.body.password,req.body.correo,req.body.sexo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,user){
 		if(error)
 			next(error);
 		else if(user){
@@ -72,7 +72,7 @@ router.post('/insertar', function(req, res, next){
 
 // ACTUALIZAR
 router.post('/actualizar', function(req, res, next){
-	usuarios.update(req.body.nombre,req.body.apellido,req.body.usuario,req.body.password,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
+	usuarios.update(req.body.nombre,req.body.apellido,req.body.usuario,req.body.password,req.body.correo,req.body.sexo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
 		console.log(req.body.usuario);
 		if(error)
 			next(error);
