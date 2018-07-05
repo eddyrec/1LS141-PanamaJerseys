@@ -122,7 +122,7 @@ router.get('/adminstatus',function(req, res, next){
 
 //INSERTAR
 router.post('/insertarP', function(req, res, next){
-	estados.insert(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.username,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,user){
+	estados.insert(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.usuario,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,user){
 		if(error)
 			next(error);
 		else if(user){
@@ -136,7 +136,7 @@ router.post('/insertarP', function(req, res, next){
 
 // ACTUALIZAR
 router.post('/actualizarP', function(req, res, next){
-	estados.update(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.username,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
+	estados.update(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.usuario,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
 		console.log(req.body.ordernum);
 		if(error)
 			next(error);
