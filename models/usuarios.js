@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
     usuario: { type: String, unique: false, required: true, trim: true },
     password: { type: String, unique: false, required: true, trim: true },
     correo: { type: String, unique: false, required: true, trim: true },
+    sexo: { type: String, unique: false, required: true, trim: true },
     direccion1: { type: String, unique: false, required: true, trim: true },
     direccion2: { type: String, unique: false, required: false, trim: true },
     telefono: { type: String, unique: false, required: false, trim: true },
@@ -24,7 +25,7 @@ usuariosSchema.statics.findAll = function(callback){
     })
 }
 
-usuariosSchema.statics.insert = function(nombre,apellido,usuario,password,correo,direccion1,direccion2,telefono,callback){
+usuariosSchema.statics.insert = function(nombre,apellido,usuario,password,correo,sexo,direccion1,direccion2,telefono,callback){
     Usuarios.findOne({usuario:usuario},'usuario',function(err,user){
         if(err){
             return callback(err)
@@ -39,6 +40,7 @@ usuariosSchema.statics.insert = function(nombre,apellido,usuario,password,correo
                 usuario:usuario,
                 password:password,
                 correo:correo,
+                sexo:sexo,
                 direccion1:direccion1,
                 direccion2:direccion2,
                 telefono:telefono};
@@ -49,8 +51,8 @@ usuariosSchema.statics.insert = function(nombre,apellido,usuario,password,correo
             })}
     })   
 }
-usuariosSchema.statics.update = function(nombre,apellido,usuario,password,correo,direccion1,direccion2,telefono,callback){
-    Usuarios.findOne({usuario:usuario},'nombre apellido usuario password correo direccion1 direccion2 telefono',function(err,user){
+usuariosSchema.statics.update = function(nombre,apellido,usuario,password,correo,sexo,direccion1,direccion2,telefono,callback){
+    Usuarios.findOne({usuario:usuario},'nombre apellido usuario password correo sexo direccion1 direccion2 telefono',function(err,user){
         if(err)
             return callback(err);
         else if(!user){
@@ -68,6 +70,8 @@ usuariosSchema.statics.update = function(nombre,apellido,usuario,password,correo
                     user.password = password;
                 if(correo)
                     user.correo = correo;
+                if(sexo)
+                    user.sexo = sexo;
                 if(direccion1)
                     user.direccion1 = direccion1;
                 if(direccion2)
