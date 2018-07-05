@@ -25,3 +25,61 @@ block contenido
                             th Telefono 
                             th
                             th 
+                        tr 
+                            -var number = 0;
+                            each lista in modelo
+                                form(action='/actualizar', method='POST')
+                                    td #{number+1}  
+                                    td #{lista.nombre}
+                                        input#nombre(type='text' name='nombre')
+                                    td #{lista.apellido}
+                                        input#apellido(type='text' name='apellido')
+                                    td #{lista.correo}
+                                        input#correo(type='email' name='correo')
+                                    td #{lista.sexo}
+                                        input#sexo(type='text' name='sexo' )
+                                    td #{lista.direccion1}
+                                        textarea#(name="", cols="30", rows="10")#direccion1(type='text' name='direccion1', cols="30", rows="10")
+                                    td #{lista.direccion2}
+                                        textarea#(name="", cols="30", rows="10")#direccion2(type='text' name='direccion2', cols="30", rows="10")
+                                    td #{lista.telefono}
+                                        input#telefono(type='number' name='telefono')
+                                    td #{lista.usuario}
+                                        input#usuario(type='text'name="usuario" value=lista.usuario)
+                                  
+                                    td #{lista.password}
+                                        input#password(type='password' name='password')
+                                    td 
+                                        input(type='submit',value='Actualizar').btn.btn-success
+                                form(action='/eliminar', method='POST')
+                                    input(type='hidden', value=lista.usuario, name='usuario')
+                                    td
+                                        input(type='submit',value='Borrar').btn.btn-danger
+                        tr 
+                            form(method='POST', action='/insertar')
+                                td Nuevo
+                                td
+                                    input#nombre(type='text' name='nombre')
+                                td
+                                    input#apellido(type='text' name='apellido') 
+                                td
+                                    input#correo(type='email' name='correo')
+                                td
+                                    input#sexo(type='text' name='sexo')
+                                td
+                                    textarea#direccion(name="direccion", cols="30", rows="10")
+                                td
+                                    textarea#direccion2(name="direccion2", cols="30", rows="10")
+                                td
+                                    input#telefono(type='number' name='telefono')       
+                                td
+                                    input#usuario(type='text' name='sexo')
+
+                                td
+                                    input#password(type='password' name='password')
+                                td(colspan='2' style='text-align:center')
+                                    input.btn.btn-primary(type='submit' value='Insertar') 
+                                
+                                    
+            
+                        
