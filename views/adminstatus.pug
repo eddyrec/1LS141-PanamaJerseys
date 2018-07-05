@@ -27,8 +27,9 @@ block contenido
                         tr 
                             -var number = 0;
                             each lista in modelo
+                                - number = number + 1
                                 form(action='/actualizarP', method='POST')
-                                    td #{number+1}  
+                                    td #{number}  
                                     td #{lista.ordernum}
                                         input#ordernum(type='text' name='ordernum' value=lista.ordernum)
                                     td #{lista.orderstat}

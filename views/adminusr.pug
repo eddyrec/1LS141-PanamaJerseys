@@ -28,8 +28,9 @@ block contenido
                         tr 
                             -var number = 0;
                             each lista in modelo
+                                - number = number + 1
                                 form(action='/actualizar', method='POST')
-                                    td #{number+1}  
+                                    td #{number}  
                                     td #{lista.nombre}
                                         input#nombre(type='text' name='nombre')
                                     td #{lista.apellido}
