@@ -83,7 +83,7 @@ usuariosSchema.statics.update = function(nombre,apellido,usuario,password,correo
     })   
 }
 
-usuarioSchema.statics.delete = function(usuario,callback){
+usuariosSchema.statics.delete = function(usuario,callback){
     Usuarios.findOne({usuario:usuario},'usuario',function(err,users){
         if(err)
             return callback(err);
