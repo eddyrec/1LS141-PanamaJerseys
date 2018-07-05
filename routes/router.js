@@ -2,7 +2,7 @@
 let express = require('express');
 let router = express.Router();
 let user = require('../models/user');
-let estudiante = require('../models/estudiante')
+let usuarios = require('../models/usuarios')
 
 //LOGIN
 router.get('/', function(req, res){
@@ -56,49 +56,49 @@ router.get('/adminusr',function(req, res, next){
 	// }); 
 });
 
-// //INSERTAR
-// router.post('/insertar', function(req, res, next){
-// 	estudiante.insert(req.body.nombre,req.body.apellido,req.body.edad,req.body.cedula,req.body.correo,req.body.carrera,req.body.year,req.body.direccion,req.body.sexo,req.body.indice, function(error,user){
-// 		if(error)
-// 			next(error);
-// 		else if(user){
-// 			var err = new Error('cedula ya existente');
-// 			err.status = 401;
-// 			next(err);}
-// 		else
-// 			res.redirect('/profile');
-// 	  });
-// });
+//INSERTAR
+router.post('/insertar', function(req, res, next){
+	usuarios.insert(req.body.nombre,req.body.apellido,req.body.usuario,req.body.password,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,user){
+		if(error)
+			next(error);
+		else if(user){
+			var err = new Error('usuario ya existente');
+			err.status = 401;
+			next(err);}
+		else
+			res.redirect('/profile');
+	  });
+});
 
-//ACTUALIZAR
-// router.post('/actualizar', function(req, res, next){
-// 	estudiante.update(req.body.nombre,req.body.apellido,req.body.edad,req.body.cedula,req.body.correo,req.body.carrera,req.body.year,req.body.direcion,req.body.sexo,req.body.indice, function(error,msg){
-// 		console.log(req.body.cedula);
-// 		if(error)
-// 			next(error);
-// 		else if(!msg){
-// 			var err = new Error('Usuario no existe');
-// 			err.status = 401;
-// 			next (err);}
-// 		res.redirect('/profile');
+// ACTUALIZAR
+router.post('/actualizar', function(req, res, next){
+	usuarios.update(req.body.nombre,req.body.apellido,req.body.usuario,req.body.password,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
+		console.log(req.body.usuario);
+		if(error)
+			next(error);
+		else if(!msg){
+			var err = new Error('Usuario no existe');
+			err.status = 401;
+			next (err);}
+		res.redirect('/profile');
 		
-// 	  });
-// });
+	  });
+});
 
 // //ELIMINAR
-// router.post('/eliminar', function(req, res, next){
-// 	estudiante.delete(req.body.cedula, function(error,msg){
-// 		if(error)
-// 			next(error);
-// 		else if(msg){
-// 			var err = new Error('cedula no existe');
-// 			err.status = 401;
-// 			next(err);
-// 		}
-// 		else{
-// 			console.log('exito');
-// 			res.redirect('/profile');}
-// 	  });
-// });
+router.post('/eliminar', function(req, res, next){
+	usuarios.delete(req.body.usuario, function(error,msg){
+		if(error)
+			next(error);
+		else if(msg){
+			var err = new Error('usuario no existe');
+			err.status = 401;
+			next(err);
+		}
+		else{
+			console.log('exito');
+			res.redirect('/profile');}
+	  });
+});
 
 module.exports = router;
