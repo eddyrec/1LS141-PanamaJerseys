@@ -27,6 +27,7 @@ router.get('/login', function(req, res){
 	res.render('login',{csrfToken: req.csrfToken()});
 });
 
+
 // router.get('/adminusr', function(req, res){
 // 	res.render('adminusr');
 // });
