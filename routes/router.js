@@ -4,6 +4,10 @@ let router = express.Router();
 let user = require('../models/user');
 let usuarios = require('../models/usuarios')
 let estados = require('../models/estados')
+let csrf = require('csurf')
+
+let csrfProtection = csrf();
+router.use(csrfProtection);
 
 //LOGIN
 router.get('/', function(req, res){
@@ -20,7 +24,7 @@ router.get('/registro', function(req, res){
 });
 
 router.get('/login', function(req, res){
-	res.render('login');
+	res.render('login',{csrfToken: req.csrfToken()});
 });
 
 // router.get('/adminusr', function(req, res){

@@ -5,6 +5,9 @@ let bodyParser = require('body-parser');
 let session = require('express-session'); 
 let path = require('path');
 let MongoStore = require('connect-mongo')(session);
+let passport = require('passport');
+let flash = require('connect-flash');
+let cookieParser = require('cookie-parser');
 
 //Mongoose Connection 
 let mongoose = require('mongoose');
@@ -25,14 +28,19 @@ app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(session({
 	secret: 'work hard',
-	resave: true,
+	resave: false,
 	saveUninitialized: false,
 	store: new MongoStore({
 		mongooseConnection: db
 	})
   }));
+  app.use(flash());
+  app.use(passport.initialize());
+  app.use(passport.session());
+
 
 // Routes
 let routes = require('./routes/router');
