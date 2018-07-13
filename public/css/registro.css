@@ -241,7 +241,7 @@
   [ Input ]*/
   
   .wrap-input100 {
-    width: 100%;
+    width: 50px;
     position: relative;
     background-color: #fff;
     border: 1px solid #e6e6e6;
@@ -254,12 +254,12 @@
     font-family: Raleway-Medium;
     color: #555555;
     line-height: 1.2;
-    font-size: 18px;
+    font-size: 14px;
   
     display: block;
-    width: 100%;
+    width: 50px;
     background: transparent;
-    height: 55px;
+    height: 30px;
     padding: 0 25px 0 25px;
   }
   /*------------------------------------------------------------------

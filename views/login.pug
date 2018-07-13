@@ -258,6 +258,7 @@ body
                     | Olvidaste Contrase&ntilde;a?
               | &#x9;&#x9;&#x9;
               .container-login100-form-btn
+                input(type='hidden', name='_csrf', value=csrfToken)
                 button.login100-form-btn(type='submit')
                   | Inicio de Sesion
         // Footer
