@@ -220,8 +220,13 @@ body
         // /NAVIGATION
         .row  
         .card.card-container
+          if hasErrors
+            .alert.alert-danger
+              each lista in messages
+                p  #{lista}
+
           .wrap-login100.mt-5.mb-5
-            form.login100-form.validate-form.flex-sb.flex-w(method='post')
+            form.login100-form.validate-form.flex-sb.flex-w(action='/login', method='POST')
               span.login100-form-title.p-b-32
                 | Inicio de Sesi&oacute;n
               | &#x9;&#x9;&#x9;
@@ -229,7 +234,7 @@ body
                 | Usuario
               | &#x9;&#x9;&#x9;
               .wrap-input100.validate-input.m-b-36(data-validate='Username is required')
-                input.input100(type='text', name='email')
+                input.input100(type='email', name='correo')
                 | &#x9;&#x9;&#x9;&#x9;
                 span.focus-input100
               | &#x9;&#x9;&#x9;

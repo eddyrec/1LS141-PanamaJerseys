@@ -38,7 +38,13 @@ router.post('/registroU', passport.authenticate('local.signup',{
 
 //LOGIN
 router.get('/login', function(req, res){
-	res.render('login',{csrfToken: req.csrfToken()});
+	let messages = req.flash('error');
+	res.render('login',{csrfToken: req.csrfToken(),messages: messages, hasErrors: messages.length > 0 });
+});
+
+router.get('/logout', function(req,res,next){
+	req.logout();
+	res.redirect('/')
 });
 
 
@@ -46,23 +52,30 @@ router.get('/login', function(req, res){
 // 	res.render('adminusr');
 // });
 
-router.post('/login', function(req, res, next){
-	user.authenticate(req.body.email, req.body.password, function(error,user){
-		if(error)
-			next(error);
-		else if(!user) {
-			var err = new Error('Usuario o contraseña incorrecta');
-            err.status = 401;
-			next(err); }
-		else{
-			req.session.username = user.username;
-			res.redirect('/adminusr');  }
-	});
-});
+// router.post('/login', function(req, res, next){
+// 	user.authenticate(req.body.email, req.body.password, function(error,user){
+// 		if(error)
+// 			next(error);
+// 		else if(!user) {
+// 			var err = new Error('Usuario o contraseña incorrecta');
+//             err.status = 401;
+// 			next(err); }
+// 		else{
+// 			req.session.username = user.username;
+// 			res.redirect('/adminusr');  }
+// 	});
+// });
+
+router.post('/login', passport.authenticate('local.signin',{
+	successRedirect: '/adminusr',
+	failureRedirect: '/login',
+	failureFlash: true
+}));
+
 
 
 //ADMINUSR
-router.get('/adminusr',function(req, res, next){
+router.get('/adminusr',isLoggedIn,function(req, res, next){
 	if(!req.session.username){
 		res.redirect('/login');
 	}
@@ -125,7 +138,7 @@ router.post('/eliminar', function(req, res, next){
 
 
 //ESTATUS PEDIDO cambiar Todo donde dice users
-router.get('/adminstatus',function(req, res, next){
+router.get('/adminstatus',isLoggedIn,function(req, res, next){
 	if(!req.session.username){
 		res.redirect('/login');
 	}
@@ -191,3 +204,10 @@ router.post('/eliminarP', function(req, res, next){
 
 
 module.exports = router;
+
+function isLoggedIn (req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect('/login')
+}

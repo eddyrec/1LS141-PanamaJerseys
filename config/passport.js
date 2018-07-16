@@ -26,6 +26,17 @@ passport.use('local.signup', new LocalStrategy({
     // phoneField: 'telefono',
     passReqToCallback: true
 }, function(req, correo, password,done){
+    req.checkBody('email','Correo Invalido').notEmpty().isEmail();
+    req.checkBody('password','Password Invalido').notEmpty().isLength({min:6});
+    req.checkBody('usuario','Usuario Invalido').notEmpty().isLength({min:3});
+    var errors = req.validationErrors();
+    if (errors) {
+        let messages = [];
+        errors.forEach(function(error){
+            messages.push(error.msg);
+        });
+        return done(null,false, req.flash('error',messages));
+    }
     Usuarios.findOne({'correo': correo}, function(err, user){
         if(err){
             return done(err);
@@ -49,6 +60,37 @@ passport.use('local.signup', new LocalStrategy({
             }
             return done(null, newUsuarios);
         });
+    }) ;   
+
+}));
+
+passport.use('local.signin', new LocalStrategy({
+    usernameField: 'correo',
+    passwordField: 'password',
+    passReqToCallback: true
+}, function(req, correo, password,done){
+    req.checkBody('correo','Correo Invalidos').notEmpty();
+    req.checkBody('password','Password Invalido').notEmpty();
+    var errors = req.validationErrors();
+    if (errors) {
+        var messages = [];
+        errors.forEach(function(error){
+            messages.push(error.msg);
+        });
+        return done(null,false, req.flash('error',messages));
+    }
+
+    Usuarios.findOne({'correo': correo}, function(err, user){
+        if(err){
+            return done(err);
+        }
+        if(!user){
+            return done(null, false, {message: 'Usuario no Registrado'});
+        }
+        if (!user.validPassword(password)){
+            return done(null, false, {message: 'Password Incorrecto'});
+        }
+      return done(null, user);
     }) ;   
 
 }));
