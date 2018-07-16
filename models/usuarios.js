@@ -1,5 +1,7 @@
 "use strict";
 const mongoose = require('mongoose');
+let Schema = mongoose.Schema;
+let bcrypt = require('bcrypt');
 
 
  var usuariosSchema = new mongoose.Schema({
@@ -14,6 +16,14 @@ const mongoose = require('mongoose');
     telefono: { type: String, unique: false, required: false, trim: true },
 },{collection:'usuarios'});
 
+
+usuariosSchema.methods.encryptPassword = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10),null);
+};
+
+usuariosSchema.methods.validPassword = function(password){
+    return bcrypt.compareSync(password, this.password);
+};
 
 usuariosSchema.statics.findAll = function(callback){
     Usuarios.find({},function(err,users) {

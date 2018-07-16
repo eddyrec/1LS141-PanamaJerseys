@@ -8,6 +8,7 @@ let MongoStore = require('connect-mongo')(session);
 let passport = require('passport');
 let flash = require('connect-flash');
 let cookieParser = require('cookie-parser');
+let validator = require('express-validator');
 
 //Mongoose Connection 
 let mongoose = require('mongoose');
@@ -19,6 +20,7 @@ db.once('open',() => {
 	console.log('Connected to Mongo Database');
 });
 
+require('./config/passport');
 // Setting View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -29,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
 app.use(session({
 	secret: 'work hard',

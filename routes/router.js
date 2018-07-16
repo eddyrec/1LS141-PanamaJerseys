@@ -1,15 +1,17 @@
 "use strict";
 let express = require('express');
 let router = express.Router();
+let csrf = require('csurf')
+let passport = require('passport');
+
 let user = require('../models/user');
 let usuarios = require('../models/usuarios')
 let estados = require('../models/estados')
-let csrf = require('csurf')
 
 let csrfProtection = csrf();
 router.use(csrfProtection);
 
-//LOGIN
+
 router.get('/', function(req, res){
 	res.render('index');
 });
@@ -19,10 +21,22 @@ router.get('/producto', function(req, res){
 	res.render('producto');
 });
 
+
+//REGISTRO
+
 router.get('/registro', function(req, res){
-	res.render('registro');
+	let messages = req.flash('error');
+	res.render('registro',{csrfToken: req.csrfToken(),messages: messages, hasErrors: messages.length > 0 });
 });
 
+router.post('/registroU', passport.authenticate('local.signup',{
+	successRedirect: '/login',
+	failureRedirect: '/registro',
+	failureFlash: true
+}));
+
+
+//LOGIN
 router.get('/login', function(req, res){
 	res.render('login',{csrfToken: req.csrfToken()});
 });
@@ -46,6 +60,8 @@ router.post('/login', function(req, res, next){
 	});
 });
 
+
+//ADMINUSR
 router.get('/adminusr',function(req, res, next){
 	if(!req.session.username){
 		res.redirect('/login');

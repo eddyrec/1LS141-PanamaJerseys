@@ -3,6 +3,11 @@ block head
     link(rel="stylesheet", href="/css/registro.css")
 block content
     .card.card-container
+          if hasErrors
+            .alert.alert-danger
+              each lista in messages
+                p  #{lista}
+
           .w.mt-5.mb-5
             form.l(action='/registroU', method='POST')
               span.login100-form-title.p-b-32
@@ -78,6 +83,17 @@ block content
                 span.focus-input100
               | &#x9;&#x9;&#x9;
               | &#x9;&#x9;&#x9;
+               
+              span.txt1.p-b-11
+                | Telefono
+              | &#x9;&#x9;&#x9;
+              .wrap-input100.validate-input.m-b-8
+                input.input100(type='text', name='telefono')
+                | &#x9;&#x9;&#x9;&#x9;
+                span.focus-input100
+              | &#x9;&#x9;&#x9;
+              | &#x9;&#x9;&#x9;
+               
                
               | &#x9;&#x9;&#x9;
               .container-login100-form-btn
