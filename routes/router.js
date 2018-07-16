@@ -7,11 +7,8 @@ let passport = require('passport');
 let user = require('../models/user');
 let usuarios = require('../models/usuarios')
 let estados = require('../models/estados')
-<<<<<<< HEAD
-=======
 let productos = require('../models/productos')
 let csrf = require('csurf')
->>>>>>> e1ace54d38f504c57fd8f036a6c7a35a379fb21a
 
 let csrfProtection = csrf();
 router.use(csrfProtection);
