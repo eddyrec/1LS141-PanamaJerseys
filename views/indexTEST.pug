@@ -1,0 +1,346 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+       
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+         
+    meta(name='description', content='')
+         
+    meta(name='author', content='')
+         
+    title Shop Homepage - Start Bootstrap Template
+    // Bootstrap core CSS
+    link(href='/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    // Custom styles for this template
+    link(href='/css/shop-homepage.css', rel='stylesheet')
+    // Google font
+    link(href='https://fonts.googleapis.com/css?family=Hind:400,700', rel='stylesheet')
+    // Bootstrap
+    link(type='text/css', rel='stylesheet', href='/css/bootstrap.min.css')
+    // Slick
+    link(type='text/css', rel='stylesheet', href='/css/slick.css')
+    
+    link(type='text/css', rel='stylesheet', href='/css/slick-theme.css')
+    // nouislider
+    link(type='text/css', rel='stylesheet', href='/css/nouislider.min.css')
+    // Font Awesome Icon
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
+    // Custom stlylesheet
+    link(type='text/css', rel='stylesheet', href='/css/style.css')
+   
+body
+    header
+      // header
+      #header
+        .container
+          .pull-left
+            // Logo
+            .header-logo
+              a.logo(href='/')
+                img(src='/img/logo-bandera.png', height='70px', alt='')
+            // /Logo
+            // Search
+            .header-search
+              form
+                input.input.search-input(type='text', placeholder='Palabra clave')
+                | 
+                select.input.search-categories
+                  option(value='0') Categorias
+                  
+                  option(value='1') Categoria 1
+                  
+                  option(value='1') Categoria 2
+                | 
+                button.search-btn
+                  i.fa.fa-search
+            // /Search
+          
+          .pull-right
+            ul.header-btns
+              // Account
+              li.header-account.dropdown.default-dropdown
+                .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+                  .header-btns-icon
+                    i.fa.fa-user-o
+                  
+                  strong.text-uppercase
+                    | Mi Cuenta 
+                    i.fa.fa-caret-down
+                | 
+                a.text-uppercase(href='/login') Log-In
+                |  / 
+                a.text-uppercase(href='/registro') Crear Cuenta
+                | 
+                ul.custom-menu
+                  li
+                    a(href='#')
+                      i.fa.fa-user-o
+                      |  Mi Cuenta
+                  
+                  li
+                    a(href='#')
+                      i.fa.fa-heart-o
+                      |  Lista de deseado
+                  
+                  li
+                    a(href='#')
+                      i.fa.fa-exchange
+                      |  Comparar
+                  
+                  li
+                    a(href='#')
+                      i.fa.fa-check
+                      |  Checkout
+                  
+                  li
+                    a(href='#')
+                      i.fa.fa-unlock-alt
+                      |  Iniciar Sesion
+                  li
+                    a(href='#')
+                      i.fa.fa-user-plus
+                      |  Crear Cuenta
+              // /Account
+              // Cart
+              li.header-cart.dropdown.default-dropdown
+                a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
+                  .header-btns-icon
+                    i.fa.fa-shopping-cart
+                    
+                    span.qty 1
+                  
+                  strong.text-uppercase Mi carrito:
+                  
+                  br
+                  
+                  span $99.99
+                | 
+                .custom-menu
+                  #shopping-cart
+                    .shopping-cart-list
+                      .product.product-widget
+                        .product-thumb
+                          img(src='/img/thumb-product01.jpg', alt='')
+                        
+                        .product-body
+                          h3.product-price
+                            | $32.50 
+                            span.qty x3
+                          
+                          h2.product-name
+                            a(href='#') Product Name Goes Here
+                        
+                        button.cancel-btn
+                          i.fa.fa-trash
+                      
+                      .product.product-widget
+                        .product-thumb
+                          img(src='/img/thumb-product01.jpg', alt='')
+                        
+                        .product-body
+                          h3.product-price
+                            | $32.50 
+                            span.qty x3
+                          
+                          h2.product-name
+                            a(href='#') Product Name Goes Here
+                        
+                        button.cancel-btn
+                          i.fa.fa-trash
+                    
+                    .shopping-cart-btns
+                      button.main-btn View Cart
+                      
+                      button.primary-btn
+                        | Checkout 
+                        i.fa.fa-arrow-circle-right
+              // /Cart
+              // Mobile nav toggle
+              li.nav-toggle
+                button.nav-toggle-btn.main-btn.icon-btn
+                  i.fa.fa-bars
+              // / Mobile nav toggle
+        // header
+      // container
+    // /HEADER
+    // Page Content
+    .container
+      .row
+        // NAVIGATION
+        #navigation
+          // container
+          .container
+            #responsive-nav
+              // category nav
+              .category-nav
+                span.category-header
+                  | Categorias 
+                  i.fa.fa-list
+                ul.category-list
+                  li
+                    a(href='#') Liga X
+                  li.dropdown.mega-dropdown
+                    a.dropdown-toggle(data-toggle='dropdown' aria-expanded='true')
+                      | Liga Y 
+                      i.fa.fa-caret-down
+                    .custom-menu
+                      .row
+                        .col-md-4
+                          ul.list-links
+                            li
+                              h3.list-links-title Equipos
+                            li
+                              a(href='#') Equipo 1
+                            li
+                              a(href='#') Equipo 2
+                            li
+                              a(href='#') Equipo 3
+                            li
+                              a(href='#') Equipo 4
+                            li
+                              a(href='#') Equipo 5
+                          hr.hidden-md.hidden-lg
+                  li.dropdown.mega-dropdown
+                    a.dropdown-toggle(data-toggle='dropdown' aria-expanded='true')
+                      | Liga Z 
+                      i.fa.fa-caret-down
+                    .custom-menu
+                      .row
+                        .col-md-4
+                          ul.list-links
+                            li
+                              h3.list-links-title Equipos
+                            li
+                              a(href='#') Equipo 1
+                            li
+                              a(href='#') Equipo 2
+                            li
+                              a(href='#') Equipo 3
+                            li
+                              a(href='#') Equipo 4
+                            li
+                              a(href='#') Equipo 5
+                          hr.hidden-md.hidden-lg
+                  li
+                    a(href='#') Liga XX
+                  li.dropdown.mega-dropdown
+                    a.dropdown-toggle(data-toggle='dropdown' aria-expanded='true')
+                      | Liga XY 
+                      i.fa.fa-caret-down
+                    .custom-menu
+                      .row
+                        .col-md-4
+                          ul.list-links
+                            li
+                              h3.list-links-title Equipos
+                            li
+                              a(href='#') Equipo 1
+                            li
+                              a(href='#') Equipo 2
+                            li
+                              a(href='#') Equipo 3
+                            li
+                              a(href='#') Equipo 4
+                            li
+                              a(href='#') Equipo 5
+                          hr.hidden-md.hidden-lg
+                  li
+                    a(href='#') Liga XZ
+
+              // /category nav
+              // menu nav
+              .menu-nav
+                span.menu-header
+                  | Menu 
+                  i.fa.fa-bars
+                
+                ul.menu-list
+                  li
+                    a(href='#') Incio
+                  
+                  li
+                    a(href='#') Metodo de pago/Entregas
+                  |             
+                  li
+                    a(href='#') Quienes somos
+                  
+                  li
+                    a(href='#') Contactenos
+                  
+                  li
+                    a(href='#')
+              // menu nav
+          // /container
+        // /NAVIGATION
+        // HOME
+        #home
+          // container
+          .container
+            // home wrap
+            .home-wrap
+              // home slick
+              #home-slick
+                // banner
+                .banner.banner-1
+                  img(src='/img/015206671222748eea1MJ1banner1.jpg', alt='')
+                  
+                  .banner-caption.text-center
+                    button.primary-btn Shop Now
+                // /banner
+                // banner
+                .banner.banner-1
+                  img(src='/img/015291185096f17295cMJVIPbanner3.png', alt='')
+                  
+                  .banner-caption
+                    button.primary-btn Shop Now
+                // /banner
+                // banner
+                .banner.banner-1
+                  img(src='/img/015205003916f338905MJ1banner2.jpg', alt='')
+                  
+                  .banner-caption
+                    button.primary-btn Shop Now
+                // /banner
+              // /home slick
+            // /home wrap
+          // /container
+        // /HOME
+        // /.col-lg-3
+        .col-lg-12
+          
+          .row
+            each producto in productos
+              .col-lg-4.col-md-6.mb-4
+                .card.h-0
+                  a(href="#")
+                    img.card-img-top(src= producto.imagePath, height="200px" alt="")
+                .card-body
+                  h4.card-title
+                    a(href="#") #{producto.titulo}
+                  h5 $#{producto.precio}
+                  p.card-text #{producto.descripcion}  
+                button.btn.btn-success.pull-right(type="button") Comprar
+                .card-footer
+                  small.text-muted ★ ★ ★ ★ ☆
+          // /.row
+        // /.col-lg-9
+      // /.row
+    // /.container
+    // Footer
+    footer.py-5.bg-dark
+      .container
+        p.m-0.text-center.text-white Copyright &copy; Your Website 2017
+      // /.container
+    // Bootstrap core JavaScript
+  
+    script(src='/js/jquery.min.js')
+    |     
+    script(src='/js/bootstrap.min.js')
+    |     
+    script(src='/js/slick.min.js')
+    |     
+    script(src='/js/nouislider.min.js')
+    |     
+    script(src='/js/jquery.zoom.min.js')
+    |     
+    script(src='/js/main.js')

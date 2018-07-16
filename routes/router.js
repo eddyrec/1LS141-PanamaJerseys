@@ -7,6 +7,11 @@ let passport = require('passport');
 let user = require('../models/user');
 let usuarios = require('../models/usuarios')
 let estados = require('../models/estados')
+<<<<<<< HEAD
+=======
+let productos = require('../models/productos')
+let csrf = require('csurf')
+>>>>>>> e1ace54d38f504c57fd8f036a6c7a35a379fb21a
 
 let csrfProtection = csrf();
 router.use(csrfProtection);
@@ -199,6 +204,22 @@ router.post('/eliminarP', function(req, res, next){
 	  });
 });
 
+//
+//
+//		PRUEBA DE indexTEST
+//
+//
+
+router.get('/indexTEST', function(req, res, next){
+	productos.find(function(err, docs){
+		var productosChunk = [];
+		var chunkSize = 3;
+		for(var i = 0; i < docs.lenght; i +=chunkSize){
+			productosChunk.push(docs.slice(i,i + chunkSize));
+		}
+		res.render('indexTEST', {tittle: 'Shopping Cart', productos: docs});
+	});
+});
 
 
 
