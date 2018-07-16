@@ -11,7 +11,7 @@ let cookieParser = require('cookie-parser');
 
 //Mongoose Connection 
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://admin:admin01@localhost/panamajs?authDatabase=panamajs');
+mongoose.connect('mongodb://localhost/panamajs?authDatabase=panamajs');
 let db = mongoose.connection;
 
 db.on('error',console.error.bind(console,'Error de Conexion: '));

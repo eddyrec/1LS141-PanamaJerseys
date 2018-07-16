@@ -4,6 +4,7 @@ let router = express.Router();
 let user = require('../models/user');
 let usuarios = require('../models/usuarios')
 let estados = require('../models/estados')
+let productos = require('../models/productos')
 let csrf = require('csurf')
 
 let csrfProtection = csrf();
@@ -170,6 +171,22 @@ router.post('/eliminarP', function(req, res, next){
 	  });
 });
 
+//
+//
+//		PRUEBA DE indexTEST
+//
+//
+
+router.get('/indexTEST', function(req, res, next){
+	productos.find(function(err, docs){
+		var productosChunk = [];
+		var chunkSize = 3;
+		for(var i = 0; i < docs.lenght; i +=chunkSize){
+			productosChunk.push(docs.slice(i,i + chunkSize));
+		}
+		res.render('indexTEST', {tittle: 'Shopping Cart', productos: docs});
+	});
+});
 
 
 
