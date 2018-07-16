@@ -8,7 +8,7 @@ let user = require('../models/user');
 let usuarios = require('../models/usuarios')
 let estados = require('../models/estados')
 let productos = require('../models/productos')
-let csrf = require('csurf')
+
 
 let csrfProtection = csrf();
 router.use(csrfProtection);

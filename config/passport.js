@@ -26,7 +26,7 @@ passport.use('local.signup', new LocalStrategy({
     // phoneField: 'telefono',
     passReqToCallback: true
 }, function(req, correo, password,done){
-    req.checkBody('email','Correo Invalido').notEmpty().isEmail();
+    req.checkBody('correo','Correo Invalido').notEmpty().isEmail();
     req.checkBody('password','Password Invalido').notEmpty().isLength({min:6});
     req.checkBody('usuario','Usuario Invalido').notEmpty().isLength({min:3});
     var errors = req.validationErrors();
