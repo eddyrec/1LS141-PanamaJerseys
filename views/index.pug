@@ -59,47 +59,56 @@ body
             ul.header-btns
               // Account
               li.header-account.dropdown.default-dropdown
-                .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
-                  .header-btns-icon
-                    i.fa.fa-user-o
-                  
-                  strong.text-uppercase
-                    | Mi Cuenta 
-                    i.fa.fa-caret-down
-                | 
-                a.text-uppercase(href='/login') Log-In
-                |  / 
-                a.text-uppercase(href='/registro') Crear Cuenta
-                | 
-                ul.custom-menu
-                  li
-                    a(href='#')
-                      i.fa.fa-user-o
-                      |  Mi Cuenta
-                  
-                  li
-                    a(href='#')
-                      i.fa.fa-heart-o
-                      |  Lista de deseado
-                  
-                  li
-                    a(href='#')
-                      i.fa.fa-exchange
-                      |  Comparar
-                  
-                  li
-                    a(href='#')
-                      i.fa.fa-check
-                      |  Checkout
-                  
-                  li
-                    a(href='/login')
-                      i.fa.fa-unlock-alt
-                      |  Iniciar Sesion
-                  li
-                    a(href='/registro')
-                      i.fa.fa-user-plus
-                      |  Crear Cuenta
+                if login 
+                    .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+
+                      .header-btns-icon
+                        i.fa.fa-user-o
+                      
+                      strong.text-uppercase
+                        | Mi Cuenta 
+                    a.text-uppercase(href='/adminusr') Mi Cuenta
+                    |/
+                    a.text-uppercase(href='/logout') Cerrar Sesion
+                    ul.custom-menu
+                      li
+                        a(href='/adminusr')
+                          i.fa.fa-user-o
+                          |  Mi Cuenta
+
+                      li
+                        a(href='#')
+                          i.fa.fa-check
+                          |  Checkout
+                      
+                      li
+                        a(href='/logout')
+                          i.fa.fa-lock-alt
+                          |  Cerrar Sesion
+                     
+                else
+                        .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+                            .header-btns-icon
+                             i.fa.fa-user-o
+                          
+                            strong.text-uppercase
+                              | Mi Cuenta    
+                        | 
+                        a.text-uppercase(href='/login') Log-In
+                        |  / 
+                        a.text-uppercase(href='/registro') Crear Cuenta
+                        | 
+                        ul.custom-menu
+
+                          li
+                            a(href='/login')
+                              i.fa.fa-unlock-alt
+                              |  Iniciar Sesion
+                          li
+                            a(href='/registro')
+                              i.fa.fa-user-plus
+                              | Crear Cuenta
+              
               // /Account
               // Cart
               li.header-cart.dropdown.default-dropdown

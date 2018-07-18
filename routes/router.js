@@ -44,29 +44,11 @@ router.get('/login',notLoggedIn, function(req, res){
 	res.render('login',{csrfToken: req.csrfToken(),messages: messages, hasErrors: messages.length > 0 });
 });
 
-router.get('/logout', function(req,res,next){
+router.get('/logout',isLoggedIn, function(req,res,next){
 	req.logout();
 	res.redirect('/')
 });
 
-
-// router.get('/adminusr', function(req, res){
-// 	res.render('adminusr');
-// });
-
-// router.post('/login', function(req, res, next){
-// 	user.authenticate(req.body.email, req.body.password, function(error,user){
-// 		if(error)
-// 			next(error);
-// 		else if(!user) {
-// 			var err = new Error('Usuario o contraseña incorrecta');
-//             err.status = 401;
-// 			next(err); }
-// 		else{
-// 			req.session.username = user.username;
-// 			res.redirect('/adminusr');  }
-// 	});
-// });
 
 router.post('/login', passport.authenticate('local.signin',{
 	successRedirect: '/adminusr',
