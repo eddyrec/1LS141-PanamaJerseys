@@ -39,7 +39,7 @@ router.post('/registroU', passport.authenticate('local.signup',{
 
 
 //LOGIN
-router.get('/login', function(req, res){
+router.get('/login',notLoggedIn, function(req, res){
 	let messages = req.flash('error');
 	res.render('login',{csrfToken: req.csrfToken(),messages: messages, hasErrors: messages.length > 0 });
 });
@@ -78,9 +78,9 @@ router.post('/login', passport.authenticate('local.signin',{
 
 //ADMINUSR
 router.get('/adminusr',isLoggedIn,function(req, res, next){
-	if(!req.session.username){
-		res.redirect('/login');
-	}
+	// if(!req.session.username){
+	// 	res.redirect('/login');
+	// }
 	// else 
 	// res.render('adminusr',{usuario:req.session.username, modelo:user});
 	usuarios.findAll(function(error,users){
@@ -141,9 +141,9 @@ router.post('/eliminar', function(req, res, next){
 
 //ESTATUS PEDIDO cambiar Todo donde dice users
 router.get('/adminstatus',isLoggedIn,function(req, res, next){
-	if(!req.session.username){
-		res.redirect('/login');
-	}
+	// if(!req.session.username){
+	// 	res.redirect('/login');
+	// }
 	// else 
 	// res.render('adminusr',{usuario:req.session.username, modelo:user});
 	estados.findAll(function(error,users){
@@ -228,4 +228,12 @@ function isLoggedIn (req, res, next){
 		return next();
 	}
 	res.redirect('/login')
+}
+
+
+function notLoggedIn (req, res, next){
+	if(!req.isAuthenticated()){
+		return next();
+	}
+	res.redirect('/adminusr')
 }
