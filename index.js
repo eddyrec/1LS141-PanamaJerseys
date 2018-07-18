@@ -22,6 +22,7 @@ db.once('open',() => {
 
 require('./config/passport');
 // Setting View Engine
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
