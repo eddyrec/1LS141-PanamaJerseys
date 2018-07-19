@@ -22,7 +22,8 @@ block contenido
                             th Direccion 2
                             th Telefono 
                             th Usuario
-                            th Contrasena 
+                            th Contrasena
+                            th Admin 
                             th undefined
                             th 
                         tr 
@@ -50,11 +51,17 @@ block contenido
                                   
                                     td #{lista.password}
                                         input#password(type='password' name='password')
+                                    
+                                    td #{lista.admin}
+                                        input#admin(type='checkbox' name='admin' value='admin')
                                     td 
+                                        input(type='hidden', name='_csrf', value=csrfToken)
                                         input(type='submit',value='Actualizar').btn.btn-success
                                 form(action='/eliminar', method='POST')
                                     input(type='hidden', value=lista.usuario, name='usuario')
+                                    
                                     td
+                                        input(type='hidden', name='_csrf', value=csrfToken)
                                         input(type='submit',value='Borrar').btn.btn-danger
                                 tr 
                             form(method='POST', action='/insertar')
@@ -78,7 +85,10 @@ block contenido
 
                                 td
                                     input#password(type='password' name='password')
+                                td
+                                    input#admin(type='checkbox' name='admin' value='admin')
                                 td(colspan='2' style='text-align:center')
+                                    input(type='hidden', name='_csrf', value=csrfToken)
                                     input.btn.btn-primary(type='submit' value='Insertar') 
                                 
                                     

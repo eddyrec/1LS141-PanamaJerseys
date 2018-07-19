@@ -14,6 +14,7 @@ let bcrypt = require('bcrypt');
     direccion1: { type: String, unique: false, required: true, trim: true },
     direccion2: { type: String, unique: false, required: false, trim: true },
     telefono: { type: String, unique: false, required: false, trim: true },
+    admin: { type: String, unique: false, required: false, trim: true, default:'user' },
 },{collection:'usuarios'});
 
 
@@ -35,7 +36,7 @@ usuariosSchema.statics.findAll = function(callback){
     })
 }
 
-usuariosSchema.statics.insert = function(nombre,apellido,usuario,password,correo,sexo,direccion1,direccion2,telefono,callback){
+usuariosSchema.statics.insert = function(nombre,apellido,usuario,password,correo,sexo,direccion1,direccion2,telefono,admin,callback){
     Usuarios.findOne({usuario:usuario},'usuario',function(err,user){
         if(err){
             return callback(err)
@@ -48,12 +49,13 @@ usuariosSchema.statics.insert = function(nombre,apellido,usuario,password,correo
                 nombre:nombre,
                 apellido:apellido,
                 usuario:usuario,
-                password:password,
+                password:encryptPassword(password),
                 correo:correo,
                 sexo:sexo,
                 direccion1:direccion1,
                 direccion2:direccion2,
-                telefono:telefono};
+                telefono:telefono,
+                admin:admin};
             Usuarios.create(data,function(err){
                 if(err)
                     return callback(err);
@@ -61,8 +63,8 @@ usuariosSchema.statics.insert = function(nombre,apellido,usuario,password,correo
             })}
     })   
 }
-usuariosSchema.statics.update = function(nombre,apellido,usuario,password,correo,sexo,direccion1,direccion2,telefono,callback){
-    Usuarios.findOne({usuario:usuario},'nombre apellido usuario password correo sexo direccion1 direccion2 telefono',function(err,user){
+usuariosSchema.statics.update = function(nombre,apellido,usuario,password,correo,sexo,direccion1,direccion2,telefono,admin,callback){
+    Usuarios.findOne({usuario:usuario},'nombre apellido usuario password correo sexo direccion1 direccion2 telefono admin',function(err,user){
         if(err)
             return callback(err);
         else if(!user){
@@ -77,7 +79,7 @@ usuariosSchema.statics.update = function(nombre,apellido,usuario,password,correo
                 if(usuario)
                     user.usuario = usuario;               
                 if(password)
-                    user.password = password;
+                    user.password = user.encryptPassword(password);
                 if(correo)
                     user.correo = correo;
                 if(sexo)
@@ -88,6 +90,8 @@ usuariosSchema.statics.update = function(nombre,apellido,usuario,password,correo
                     user.direccion2 = direccion2;
                 if(telefono)
                     user.telefono = telefono;
+                if(admin)
+                    user.admin = admin;
                 user.save(function(err){
                     if(err)
                         return callback(err);
