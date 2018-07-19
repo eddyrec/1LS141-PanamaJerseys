@@ -219,7 +219,7 @@ function notLoggedIn (req, res, next){
 	if(!req.isAuthenticated()){
 		return next();
 	}
-	res.redirect('/adminusr')
+	res.redirect('/')
 }
 
 function isAdmin (req, res, next){
