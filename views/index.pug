@@ -315,113 +315,23 @@ body
         // /.col-lg-3
         .col-lg-12
           .row
-            .col-lg-4.col-md-6.mb-4
-              .card.h-0
-                a(href='/producto')
-                  img.card-img-top(src='/images/test_camiseta.jpg', height='200px', alt='')
-                |                 
-                .card-body
-                  h4.card-title
-                    a(href='/producto') Camiseta Real Madrid
-                  |                   
-                  h5 $24.99
-                  |                   
-                  p.card-text
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                  |
-                button.btn.btn-success(type="button") Comprar                 
-                .card-footer
-                  small.text-muted &starf; &starf; &starf; &starf; &star;
-            |             
-            .col-lg-4.col-md-6.mb-4
-              .card.h-0
-                a(href='/producto')
-                  img.card-img-top(src='/images/test_camiseta_germany.PNG', height='200px', alt='')
-                |                 
-                .card-body
-                  h4.card-title
-                    a(href='/producto') Camiseta Alemania 
-                  |                   
-                  h5 $24.99
-                  |                   
-                  p.card-text
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                    |
-                button.btn.btn-success(type="button") Comprar                                 
-                .card-footer
-                  small.text-muted &starf; &starf; &starf; &starf; &star;
-            |             
-            .col-lg-4.col-md-6.mb-4
-              .card.h-0
-                a(href='/producto')
-                  img.card-img-top(src='/images/test_camiseta_barcelona.PNG', height='200px', alt='')
-                |                 
-                .card-body
-                  h4.card-title
-                    a(href='/producto') Camiseta Barcelona
-                  |                   
-                  h5 $24.99
-                  |                   
-                  p.card-text
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                    |
-                button.btn.btn-success(type="button") Comprar                                 
-                .card-footer
-                  small.text-muted &starf; &starf; &starf; &starf; &star;
-            |             
-            .col-lg-4.col-md-6.mb-4
-              .card.h-0
-                a(href='/producto')
-                  img.card-img-top(src='/images/test_camiseta_spain.PNG', height='200px', alt='')
-                |                 
-                .card-body
-                  h4.card-title
-                    a(href='/producto') Camiseta Espa&ntilde;a
-                  |                   
-                  h5 $24.99
-                  |                   
-                  p.card-text
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                  |
-                button.btn.btn-success(type="button") Comprar                 
-                .card-footer
-                  small.text-muted &starf; &starf; &starf; &starf; &star;
-            |             
-            .col-lg-4.col-md-6.mb-4
-              .card.h-0
-                a(href='/producto')
-                  img.card-img-top(src='/images/test_camiseta_bayern.PNG', height='200px', alt='')
-                |                 
-                .card-body
-                  h4.card-title
-                    a(href='/producto') Camiseta Bayern M&uuml;nchen
-                  |                   
-                  h5 $24.99
-                  |                   
-                  p.card-text
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! 
-                |
-                button.btn.btn-success(type="button") Comprar                 
-                .card-footer
-                  small.text-muted &starf; &starf; &starf; &starf; &star;
-            |             
-            .col-lg-4.col-md-6.mb-4
-              .card.h-0
-                a(href='/producto')
-                  img.card-img-top(src='/images/test_camiseta_croatia.PNG', height='200px', alt='')
-                |                 
-                .card-body
-                  h4.card-title
-                    a(href='/producto') Camiseta Croacia
-                  |                   
-                  h5 $24.99
-                  |                   
-                  p.card-text
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                |
-                button.btn.btn-success(type="button") Comprar                 
-                .card-footer
-                  small.text-muted &starf; &starf; &starf; &starf; &star;
+            - var produ = productos
+            - if (produ.length)
+            -for (var i = 0; i < productos.length; i++)
+              - produ.forEach(function(producto){
+                .col-lg-4.col-md-6.mb-4
+                  .card.h-0
+                    a(href="#")
+                      img.card-img-top(src= producto.imagePath, height="200px" alt="")
+                  .card-body
+                    h4.card-title
+                      a(href="#") #{producto.titulo}
+                    h5 $#{producto.precio}
+                    p.card-text #{producto.descripcion}  
+                  button.btn.btn-success.pull-right(href='/add-to-cart/' + producto.id ,type="button") Comprar
+                  .card-footer
+                    small.text-muted ★ ★ ★ ★ ☆
+              - });
           // /.row
         // /.col-lg-9
       // /.row

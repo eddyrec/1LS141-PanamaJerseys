@@ -46,9 +46,7 @@ body
                 | 
                 select.input.search-categories
                   option(value='0') Categorias
-                  
-                  option(value='1') Categoria 1
-                  
+                                   
                   option(value='1') Categoria 2
                 | 
                 button.search-btn
@@ -59,47 +57,56 @@ body
             ul.header-btns
               // Account
               li.header-account.dropdown.default-dropdown
-                .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
-                  .header-btns-icon
-                    i.fa.fa-user-o
-                  
-                  strong.text-uppercase
-                    | Mi Cuenta 
-                    i.fa.fa-caret-down
-                | 
-                a.text-uppercase(href='/login') Log-In
-                |  / 
-                a.text-uppercase(href='/registro') Crear Cuenta
-                | 
-                ul.custom-menu
-                  li
-                    a(href='#')
-                      i.fa.fa-user-o
-                      |  Mi Cuenta
-                  
-                  li
-                    a(href='#')
-                      i.fa.fa-heart-o
-                      |  Lista de deseado
-                  
-                  li
-                    a(href='#')
-                      i.fa.fa-exchange
-                      |  Comparar
-                  
-                  li
-                    a(href='#')
-                      i.fa.fa-check
-                      |  Checkout
-                  
-                  li
-                    a(href='#')
-                      i.fa.fa-unlock-alt
-                      |  Iniciar Sesion
-                  li
-                    a(href='#')
-                      i.fa.fa-user-plus
-                      |  Crear Cuenta
+                if login 
+                    .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+
+                      .header-btns-icon
+                        i.fa.fa-user-o
+                      
+                      strong.text-uppercase
+                        | Mi Cuenta 
+                    a.text-uppercase(href='/adminusr') Mi Cuenta
+                    |/
+                    a.text-uppercase(href='/logout') Cerrar Sesion
+                    ul.custom-menu
+                      li
+                        a(href='/adminusr')
+                          i.fa.fa-user-o
+                          |  Mi Cuenta
+
+                      li
+                        a(href='#')
+                          i.fa.fa-check
+                          |  Checkout
+                      
+                      li
+                        a(href='/logout')
+                          i.fa.fa-lock-alt
+                          |  Cerrar Sesion
+                     
+                else
+                        .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+                            .header-btns-icon
+                             i.fa.fa-user-o
+                          
+                            strong.text-uppercase
+                              | Mi Cuenta    
+                        | 
+                        a.text-uppercase(href='/login') Log-In
+                        |  / 
+                        a.text-uppercase(href='/registro') Crear Cuenta
+                        | 
+                        ul.custom-menu
+
+                          li
+                            a(href='/login')
+                              i.fa.fa-unlock-alt
+                              |  Iniciar Sesion
+                          li
+                            a(href='/registro')
+                              i.fa.fa-user-plus
+                              | Crear Cuenta
+              
               // /Account
               // Cart
               li.header-cart.dropdown.default-dropdown
@@ -256,7 +263,7 @@ body
                 
                 ul.menu-list
                   li
-                    a(href='#') Incio
+                    a(href='/') Incio
                   
                   li
                     a(href='#') Metodo de pago/Entregas
@@ -308,22 +315,113 @@ body
         // /.col-lg-3
         .col-lg-12
           .row
-            - var produ = productos
-            //- each producto in productos
-            - produ.forEach(function(producto){
-              .col-lg-4.col-md-6.mb-4
-                .card.h-0
-                  a(href="#")
-                    img.card-img-top(src= producto.imagePath, height="200px" alt="")
+            .col-lg-4.col-md-6.mb-4
+              .card.h-0
+                a(href='/producto')
+                  img.card-img-top(src='/images/test_camiseta.jpg', height='200px', alt='')
+                |                 
                 .card-body
                   h4.card-title
-                    a(href="#") #{producto.titulo}
-                  h5 $#{producto.precio}
-                  p.card-text #{producto.descripcion}  
-                button.btn.btn-success.pull-right(href='/add-to-cart/' + producto.id ,type="button") Comprar
+                    a(href='/producto') Camiseta Real Madrid
+                  |                   
+                  h5 $24.99
+                  |                   
+                  p.card-text
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                  |
+                button.btn.btn-success(type="button") Comprar                 
                 .card-footer
-                  small.text-muted ★ ★ ★ ★ ☆
-            - });
+                  small.text-muted &starf; &starf; &starf; &starf; &star;
+            |             
+            .col-lg-4.col-md-6.mb-4
+              .card.h-0
+                a(href='/producto')
+                  img.card-img-top(src='/images/test_camiseta_germany.PNG', height='200px', alt='')
+                |                 
+                .card-body
+                  h4.card-title
+                    a(href='/producto') Camiseta Alemania 
+                  |                   
+                  h5 $24.99
+                  |                   
+                  p.card-text
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                    |
+                button.btn.btn-success(type="button") Comprar                                 
+                .card-footer
+                  small.text-muted &starf; &starf; &starf; &starf; &star;
+            |             
+            .col-lg-4.col-md-6.mb-4
+              .card.h-0
+                a(href='/producto')
+                  img.card-img-top(src='/images/test_camiseta_barcelona.PNG', height='200px', alt='')
+                |                 
+                .card-body
+                  h4.card-title
+                    a(href='/producto') Camiseta Barcelona
+                  |                   
+                  h5 $24.99
+                  |                   
+                  p.card-text
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                    |
+                button.btn.btn-success(type="button") Comprar                                 
+                .card-footer
+                  small.text-muted &starf; &starf; &starf; &starf; &star;
+            |             
+            .col-lg-4.col-md-6.mb-4
+              .card.h-0
+                a(href='/producto')
+                  img.card-img-top(src='/images/test_camiseta_spain.PNG', height='200px', alt='')
+                |                 
+                .card-body
+                  h4.card-title
+                    a(href='/producto') Camiseta Espa&ntilde;a
+                  |                   
+                  h5 $24.99
+                  |                   
+                  p.card-text
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                  |
+                button.btn.btn-success(type="button") Comprar                 
+                .card-footer
+                  small.text-muted &starf; &starf; &starf; &starf; &star;
+            |             
+            .col-lg-4.col-md-6.mb-4
+              .card.h-0
+                a(href='/producto')
+                  img.card-img-top(src='/images/test_camiseta_bayern.PNG', height='200px', alt='')
+                |                 
+                .card-body
+                  h4.card-title
+                    a(href='/producto') Camiseta Bayern M&uuml;nchen
+                  |                   
+                  h5 $24.99
+                  |                   
+                  p.card-text
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! 
+                |
+                button.btn.btn-success(type="button") Comprar                 
+                .card-footer
+                  small.text-muted &starf; &starf; &starf; &starf; &star;
+            |             
+            .col-lg-4.col-md-6.mb-4
+              .card.h-0
+                a(href='/producto')
+                  img.card-img-top(src='/images/test_camiseta_croatia.PNG', height='200px', alt='')
+                |                 
+                .card-body
+                  h4.card-title
+                    a(href='/producto') Camiseta Croacia
+                  |                   
+                  h5 $24.99
+                  |                   
+                  p.card-text
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                |
+                button.btn.btn-success(type="button") Comprar                 
+                .card-footer
+                  small.text-muted &starf; &starf; &starf; &starf; &star;
           // /.row
         // /.col-lg-9
       // /.row

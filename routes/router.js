@@ -1,21 +1,33 @@
 "use strict";
 let express = require('express');
 let router = express.Router();
-let csrf = require('csurf')
+let csrf = require('csurf');
 let passport = require('passport');
 
 let user = require('../models/user');
-let usuarios = require('../models/usuarios')
-let estados = require('../models/estados')
-let productos = require('../models/productos')
+let usuarios = require('../models/usuarios');
+let estados = require('../models/estados');
+let productos = require('../models/productos');
+//let Cart = require('../models/cart');
 
 
 let csrfProtection = csrf();
 router.use(csrfProtection);
 
 
-router.get('/', function(req, res){
-	res.render('index');
+// router.get('/', function(req, res){
+// 	res.render('index');
+// });
+
+router.get('/', function(req, res, next){
+	productos.find(function(err, docs){
+		var productosChunk = [];
+		var chunkSize = 3;
+		for(var i = 0; i < docs.lenght; i +=chunkSize){
+			productosChunk.push(docs.slice(i,i + chunkSize));
+		}
+		res.render('index', {tittle: 'Shopping Cart', productos: docs});
+	});
 });
 
 
@@ -55,6 +67,25 @@ router.post('/login', passport.authenticate('local.signin',{
 	failureRedirect: '/login',
 	failureFlash: true
 }));
+
+
+
+// CARRITO
+
+router.get('/add-to-cart/:id', function(req, res, next){
+	var productoid = req.params.id;
+	var cart = new Cart(req.session.cart ? req.session.cart : {items: {} });
+
+	productos.findById(productoid, function(err, producto){
+		if (err){
+			return res.redirect('/');
+		}
+		cart.add(producto, producto.id);
+		req.session.cart = cart;
+		console.log(req.session.cart);
+		res.redirect('/');
+	})
+});
 
 
 
@@ -190,22 +221,20 @@ router.post('/eliminarP', function(req, res, next){
 //		PRUEBA DE indexTEST
 //
 //
-
-router.get('/indexTEST', function(req, res, next){
+//router.get('/indexTEST', function(req, res, next){
+router.get('/index', function(req, res, next){
 	productos.find(function(err, docs){
 		var productosChunk = [];
 		var chunkSize = 3;
 		for(var i = 0; i < docs.lenght; i +=chunkSize){
 			productosChunk.push(docs.slice(i,i + chunkSize));
 		}
-		res.render('indexTEST', {tittle: 'Shopping Cart', productos: docs});
+		res.render('index', {tittle: 'Shopping Cart', productos: docs});
 	});
 });
 
 
 
-
-module.exports = router;
 
 function isLoggedIn (req, res, next){
 	if(req.isAuthenticated()){
@@ -229,5 +258,32 @@ function isAdmin (req, res, next){
 	res.redirect('/')
 }
 
+function Cart(oldCart){
+    this.items = oldCart.items || {};
+    this.totalQty = oldCart.totalQty || 0;
+    this.totalPrice = oldCart.totalPrice || 0;
+
+    this.add = function(item, id){
+        var storedItem = this.item[id];
+        if (!storedItem){
+            storedItem = this.item[id] = {item: item, qty: 0, price: 0};
+        }
+        storedItem.qty++;
+        storedItem.price = storedItem.item.price * storedItem.qty;
+        this.totalQty++;
+        this.totalPrice += storedItem.item.price;
+    };
+
+    this.generateArray = function(){
+        var arr = [];
+        for (var id in this.items){
+            arr.push(this.items[id]);
+        }
+        return arr;
+    };
+};
 
 
+
+
+module.exports = router;
