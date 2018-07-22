@@ -87,6 +87,19 @@ router.get('/add-to-cart/:id', function(req, res, next){
 	})
 });
 
+router.get('/shoppping-cart', function(req , res, next){
+	if (!req.session.cart){
+		return res.render('shopping-cart', {products:null});
+	}
+	var cart = new Cart(req.session.cart);
+	res.render('/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice})
+});
+
+//PERFIL
+
+router.get('/perfil', isLoggedIn, function(req, res, next){
+	rs.render('/perfil');
+});
 
 
 //ADMINUSR
