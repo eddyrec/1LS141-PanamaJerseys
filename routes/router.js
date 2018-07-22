@@ -31,8 +31,22 @@ router.get('/', function(req, res, next){
 });
 
 
-router.get('/producto', function(req, res){
-	res.render('producto');
+router.get('/producto/:productoid', function(req, res){
+
+	var id= req.params.productoid;
+    productos.findById(id)
+    .exec()
+    .then(result => {
+        res.status(200).render("producto", {
+            producto: result
+        });
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: err
+        })
+})
+	
 });
 
 
