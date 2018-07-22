@@ -1,0 +1,108 @@
+
+var collectionOne = [];
+var collectionTwo = [];
+app.get('/', function(req, res){
+  MongoClient.connect("mongodb://localhost:27017/michael", function(err, db) {
+    if(!err) {
+      console.log("We are connected");
+    }
+    db.collection("collectionOne", function(err, collection) {
+      collection.find().sort({order_num: 1}).toArray(function(err, result) {
+        if (err) {
+          throw err;
+        }
+        else {
+          for (i=0; i<result.length; i++) {
+            collectionOne[i] = result[i];
+          }
+        }
+      });
+      db.collection("collectionTwo", function(err, collection) {
+        collection.find().sort({order_num: 1}).toArray(function(err, result) {
+          if (err) {
+            throw err;
+          } else {
+            for (i=0; i<result.length; i++) {
+              collectionTwo[i] = result[i];
+            }
+          }
+        });
+      });
+      // Thank you aesede!
+      res.render('index.html', {
+        collectionOne: collectionOne,
+        collectionTwo: collectionTwo
+      });
+    });
+  });
+});
+
+
+
+
+router.get('/', function(req, res, next){
+	var producto;
+	var usuario;
+	productos.find(function(err, docs){
+		var productosChunk = [];
+		var chunkSize = 3;
+		for(var i = 0; i < docs.lenght; i +=chunkSize){
+			productosChunk.push(docs.slice(i,i + chunkSize));
+		}
+		producto = docs;
+	});
+	usuarios.findAll(function(err, users){
+		if(!users)
+			users = [];
+		else
+		req.session.usuario = usuarios.username;
+		usuario = {csrfToken: req.csrfToken(),usuario:req.user.usuario, modelo:users}
+			//res.render('adminusr',{csrfToken: req.csrfToken(),usuario:req.user.usuario, modelo:users});
+	});
+	res.render('index', {
+		producto,
+		usuario
+	});
+});
+
+
+
+
+
+
+router.get('/', function(req, res, next){
+	let mongoose = require('mongoose');
+	var collectionOne = [];
+	var collectionTwo = [];
+	mongoose.connect('mongodb://localhost/panamajs?authDatabase=panamajs', function (err,db){
+		if(!err) {
+			console.log("We are connected");
+		  }
+		db.collection("collectionOne", function(err, productos){
+			productos.find(function(err, docs){
+				var productosChunk = [];
+				var chunkSize = 3;
+				for(var i = 0; i < docs.lenght; i +=chunkSize){
+					productosChunk.push(docs.slice(i,i + chunkSize));
+				}
+				collectionOne = docs;
+				//res.render('index', {tittle: 'Shopping Cart', productos: docs, usuarios});
+			});
+			db.collection("collectionTwo", function(err, usuarios){
+				usuarios.findAll(function(error,users){
+					if(error)
+						next(error);
+					else if(!users)
+						users = [];
+					else
+						collectionTwo = users
+						//res.render('adminusr',{csrfToken: req.csrfToken(),usuario:req.user.usuario, modelo:users});
+				});	
+			});
+			res.render('index', {
+				collectionOne: collectionOne,
+				collectionTwo: collectionTwo
+			});		
+		});
+	});
+});	

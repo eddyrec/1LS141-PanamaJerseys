@@ -26,8 +26,9 @@ router.get('/', function(req, res, next){
 		for(var i = 0; i < docs.lenght; i +=chunkSize){
 			productosChunk.push(docs.slice(i,i + chunkSize));
 		}
-		res.render('index', {tittle: 'Shopping Cart', productos: docs});
-	});
+		productos=docs;
+		res.render('index', {productos});
+	});	
 });
 
 
@@ -111,12 +112,14 @@ router.get('/shoppping-cart', function(req , res, next){
 
 //PERFIL
 
-router.get('/perfil', isLoggedIn, function(req, res, next){
-<<<<<<< Updated upstream
-	res.render('/perfil');
-=======
-	res.render('perfil');
->>>>>>> Stashed changes
+router.get('/perfil/:id', isLoggedIn, function(req, res, next){
+	var perfilid = req.params.id;
+	usuarios.findById(perfilid, function(error, usuarios){
+		if(error){
+			return res.redirect('/login');
+		}
+		res.render('perfil',{csrfToken: req.csrfToken(),usuarios:req.user.usuario, modelo:usuarios});
+	});
 });
 
 
@@ -133,7 +136,6 @@ router.get('/adminusr',isLoggedIn,isAdmin,function(req, res, next){
 		else if(!users)
 			users = [];
 		else
-			
 			res.render('adminusr',{csrfToken: req.csrfToken(),usuario:req.user.usuario, modelo:users});
 	}); 
 });
