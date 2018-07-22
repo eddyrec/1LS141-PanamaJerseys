@@ -1,0 +1,298 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    title E-SHOP HTML Template
+    // Google font
+    link(href='https://fonts.googleapis.com/css?family=Hind:400,700', rel='stylesheet')
+    // Bootstrap
+    link(type='text/css', rel='stylesheet', href='/css/bootstrap.min.css')
+    // Slick
+    link(type='text/css', rel='stylesheet', href='/css/slick.css')
+    
+    link(type='text/css', rel='stylesheet', href='/css/slick-theme.css')
+    // nouislider
+    link(type='text/css', rel='stylesheet', href='/css/nouislider.min.css')
+    // Font Awesome Icon
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
+    // Custom stlylesheet
+    link(type='text/css', rel='stylesheet', href='/css/style.css')
+    // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+        
+      script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+body
+    header
+      // header
+      #header
+        .container
+          .pull-left
+            // Logo
+            .header-logo
+              a.logo(href='/')
+                img(src='/img/logo-bandera.png', height='70px', alt='')
+            // /Logo
+            // Search
+            .header-search
+              form
+                input.input.search-input(type='text', placeholder='Palabra clave')
+                | 
+                select.input.search-categories
+                  option(value='0') Categorias
+                                   
+                  option(value='1') Categoria 2
+                | 
+                button.search-btn
+                  i.fa.fa-search
+            // /Search
+          
+          .pull-right
+            ul.header-btns
+              // Account
+              li.header-account.dropdown.default-dropdown
+                if login 
+                    .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+
+                      .header-btns-icon
+                        i.fa.fa-user-o
+                      
+                      strong.text-uppercase
+                        | Mi Cuenta 
+                    a.text-uppercase(href='/adminusr') Mi Cuenta
+                    |/
+                    a.text-uppercase(href='/logout') Cerrar Sesion
+                    ul.custom-menu
+                      li
+                        a(href='/adminusr')
+                          i.fa.fa-user-o
+                          |  Mi Cuenta
+
+                      li
+                        a(href='#')
+                          i.fa.fa-check
+                          |  Checkout
+                      
+                      li
+                        a(href='/logout')
+                          i.fa.fa-lock-alt
+                          |  Cerrar Sesion
+                     
+                else
+                        .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+                            .header-btns-icon
+                             i.fa.fa-user-o
+                          
+                            strong.text-uppercase
+                              | Mi Cuenta    
+                        | 
+                        a.text-uppercase(href='/login') Log-In
+                        |  / 
+                        a.text-uppercase(href='/registro') Crear Cuenta
+                        | 
+                        ul.custom-menu
+
+                          li
+                            a(href='/login')
+                              i.fa.fa-unlock-alt
+                              |  Iniciar Sesion
+                          li
+                            a(href='/registro')
+                              i.fa.fa-user-plus
+                              | Crear Cuenta
+              
+              // /Account
+              // Cart
+              li.header-cart.dropdown.default-dropdown
+                a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
+                  .header-btns-icon
+                    i.fa.fa-shopping-cart
+                    
+                    span.qty 1
+                  
+                  strong.text-uppercase Mi carrito:
+                  
+                  br
+                  
+                  span $99.99
+                | 
+                .custom-menu
+                  #shopping-cart
+                    .shopping-cart-list
+                      .product.product-widget
+                        .product-thumb
+                          img(src='/img/thumb-product01.jpg', alt='')
+                        
+                        .product-body
+                          h3.product-price
+                            | $32.50 
+                            span.qty x3
+                          
+                          h2.product-name
+                            a(href='#') Product Name Goes Here
+                        
+                        button.cancel-btn
+                          i.fa.fa-trash
+                      
+                      .product.product-widget
+                        .product-thumb
+                          img(src='/img/thumb-product01.jpg', alt='')
+                        
+                        .product-body
+                          h3.product-price
+                            | $32.50 
+                            span.qty x3
+                          
+                          h2.product-name
+                            a(href='#') Product Name Goes Here
+                        
+                        button.cancel-btn
+                          i.fa.fa-trash
+                    
+                    .shopping-cart-btns
+                      button.main-btn View Cart
+                      
+                      button.primary-btn
+                        | Checkout 
+                        i.fa.fa-arrow-circle-right
+              // /Cart
+              // Mobile nav toggle
+              li.nav-toggle
+                button.nav-toggle-btn.main-btn.icon-btn
+                  i.fa.fa-bars
+              // / Mobile nav toggle
+        // header
+      // container
+    // /HEADER
+    // Page Content
+    block contenido
+    // FOOTER
+    footer#footer.section.section-grey
+      // container
+      hr
+      .container
+        // row
+        .row
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              // footer logo
+              .footer-logo
+                a.logo(href='/')
+                  img(src='/img/logo-bandera.png', alt='')
+              // /footer logo
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+              // footer social
+              ul.footer-social
+                li
+                  a(href='#')
+                    i.fa.fa-facebook
+                
+                li
+                  a(href='#')
+                    i.fa.fa-twitter
+                
+                li
+                  a(href='#')
+                    i.fa.fa-instagram
+                
+                li
+                  a(href='#')
+                    i.fa.fa-google-plus
+                
+                li
+                  a(href='#')
+                    i.fa.fa-pinterest
+              // /footer social
+          // /footer widget
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header My Account
+              
+              ul.list-links
+                li
+                  a(href='#') My Account
+                
+                li
+                  a(href='#') My Wishlist
+                
+                li
+                  a(href='#') Compare
+                
+                li
+                  a(href='#') Checkout
+                
+                li
+                  a(href='#') Login
+          // /footer widget
+          .clearfix.visible-sm.visible-xs
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Customer Service
+              
+              ul.list-links
+                li
+                  a(href='#') About Us
+                
+                li
+                  a(href='#') Shiping &amp; Return
+                
+                li
+                  a(href='#') Shiping Guide
+                
+                li
+                  a(href='#') FAQ
+          // /footer widget
+          // footer subscribe
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Stay Connected
+              
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+              
+              form
+                .form-group
+                  input.input(placeholder='Enter Email Address')
+                
+                button.primary-btn Join Newslatter
+          // /footer subscribe
+        // /row
+        hr
+        // row
+        .row
+          .col-md-8.col-md-offset-2.text-center
+            // footer copyright
+            .footer-copyright
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              | Copyright &copy;
+              script.
+                document.write(new Date().getFullYear());
+              |  All rights reserved | This template is made with 
+              i.fa.fa-heart-o(aria-hidden='true')
+              |  by 
+              a(href='https://colorlib.com', target='_blank') Colorlib
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+            // /footer copyright
+        // /row
+      // /container
+    // /FOOTER
+    // jQuery Plugins
+    script(src='/js/jquery.min.js')
+    
+    script(src='/js/bootstrap.min.js')
+    
+    script(src='/js/slick.min.js')
+    
+    script(src='/js/nouislider.min.js')
+    
+    script(src='/js/jquery.zoom.min.js')
+    
+    script(src='/js/main.js')
