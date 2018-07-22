@@ -98,7 +98,7 @@ router.get('/shoppping-cart', function(req , res, next){
 //PERFIL
 
 router.get('/perfil', isLoggedIn, function(req, res, next){
-	rs.render('/perfil');
+	res.render('/perfil');
 });
 
 

@@ -317,18 +317,14 @@ body
           .row
             - var produ = productos
             - if (produ.length)
-<<<<<<< HEAD
-            
-=======
->>>>>>> 804863d8d71326f51f607115f01bc1ec0c092b61
               - produ.forEach(function(producto){
                 .col-lg-4.col-md-6.mb-4
                   .card.h-0
-                    a(href="#")
+                    a(href="/producto/" + producto.id)
                       img.card-img-top(src= producto.imagePath, height="200px" alt="")
                   .card-body
                     h4.card-title
-                      a(href="#") #{producto.titulo}
+                      a(href="/producto/" + producto.id) #{producto.titulo}
                     h5 $#{producto.precio}
                     p.card-text #{producto.descripcion}  
                   button.btn.btn-success.pull-right(href='/add-to-cart/' + producto.id ,type="button") Comprar
