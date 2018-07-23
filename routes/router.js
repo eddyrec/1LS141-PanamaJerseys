@@ -19,6 +19,12 @@ router.use(csrfProtection);
 // 	res.render('index');
 // });
 
+//
+//
+//		PRUEBA DE indexTEST
+//
+//
+//router.get('/indexTEST', function(req, res, next){
 router.get('/', function(req, res, next){
 	productos.find(function(err, docs){
 		var productosChunk = [];
@@ -26,10 +32,10 @@ router.get('/', function(req, res, next){
 		for(var i = 0; i < docs.lenght; i +=chunkSize){
 			productosChunk.push(docs.slice(i,i + chunkSize));
 		}
-		productos=docs;
-		res.render('index', {productos});
-	});	
+		res.render('index', {tittle: 'Shopping Cart', productos: docs});
+	});
 });
+
 
 
 router.get('/producto/:productoid', function(req, res){
@@ -112,7 +118,6 @@ router.get('/shoppping-cart', function(req , res, next){
 
 //PERFIL
 
-<<<<<<< HEAD
 router.get('/perfil', isLoggedIn, function(req, res, next){
 
 	
@@ -129,15 +134,6 @@ router.get('/perfil', isLoggedIn, function(req, res, next){
         direccion2:req.user.direccion2,
         telefono:req.user.telefono,
 	
-=======
-router.get('/perfil/:id', isLoggedIn, function(req, res, next){
-	var perfilid = req.params.id;
-	usuarios.findById(perfilid, function(error, usuarios){
-		if(error){
-			return res.redirect('/login');
-		}
-		res.render('perfil',{csrfToken: req.csrfToken(),usuarios:req.user.usuario, modelo:usuarios});
->>>>>>> 3889d2b5861c0e8cd3f5c11d55166a941d06d93f
 	});
 });
 
@@ -268,23 +264,6 @@ router.post('/eliminarP', function(req, res, next){
 	  });
 });
 
-//
-//
-//		PRUEBA DE indexTEST
-//
-//
-//router.get('/indexTEST', function(req, res, next){
-router.get('/index', function(req, res, next){
-	productos.find(function(err, docs){
-		var productosChunk = [];
-		var chunkSize = 3;
-		for(var i = 0; i < docs.lenght; i +=chunkSize){
-			productosChunk.push(docs.slice(i,i + chunkSize));
-		}
-		res.render('index', {tittle: 'Shopping Cart', productos: docs});
-	});
-});
-
 
 
 
@@ -310,30 +289,7 @@ function isAdmin (req, res, next){
 	res.redirect('/perfil')
 }
 
-function Cart(oldCart){
-    this.items = oldCart.items || {};
-    this.totalQty = oldCart.totalQty || 0;
-    this.totalPrice = oldCart.totalPrice || 0;
 
-    this.add = function(item, id){
-        var storedItem = this.item[id];
-        if (!storedItem){
-            storedItem = this.item[id] = {item: item, qty: 0, price: 0};
-        }
-        storedItem.qty++;
-        storedItem.price = storedItem.item.price * storedItem.qty;
-        this.totalQty++;
-        this.totalPrice += storedItem.item.price;
-    };
-
-    this.generateArray = function(){
-        var arr = [];
-        for (var id in this.items){
-            arr.push(this.items[id]);
-        }
-        return arr;
-    };
-};
 
 
 
