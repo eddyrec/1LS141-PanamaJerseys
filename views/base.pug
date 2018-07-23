@@ -8,7 +8,7 @@ head
          
     meta(name='author', content='')
          
-    title Shop Homepage - Start Bootstrap Template
+    title Panama Jerseys
     // Bootstrap core CSS
     link(href='/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
     // Custom styles for this template
@@ -28,7 +28,7 @@ head
     // Custom stlylesheet
     link(type='text/css', rel='stylesheet', href='/css/style.css')
     // ===============================================================================================
-    link(rel='icon', type='image/png', href='/images/icons/favicon.ico')
+    link(rel='icon', type='image/png', href='/img/logo-bandera.ico')
     // ===============================================================================================
     // ===============================================================================================
     link(rel='stylesheet', type='text/css', href='/fonts/font-awesome-4.7.0/css/font-awesome.min.css')
@@ -64,115 +64,123 @@ body
             .header-search
               form
                 input.input.search-input(type='text', placeholder='Palabra clave')
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 select.input.search-categories
                   option(value='0') Categorias
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  | 
                   option(value='1') Categoria 1
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  | 
                   option(value='1') Categoria 2
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 button.search-btn
                   i.fa.fa-search
             // /Search
-          | &#x9;&#x9;&#x9;&#x9;
+          | 
           .pull-right
             ul.header-btns
               // Account
               li.header-account.dropdown.default-dropdown
-                .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
-                  .header-btns-icon
-                    i.fa.fa-user-o
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                  strong.text-uppercase
-                    | Mi Cuenta 
-                    i.fa.fa-caret-down
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                a.text-uppercase(href='/login') Log-In
-                |  / 
-                a.text-uppercase(href='/registro') Crear Cuenta
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                ul.custom-menu
-                  li
-                    a(href='#')
-                      i.fa.fa-user-o
-                      |  Mi Cuenta
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                  li
-                    a(href='#')
-                      i.fa.fa-heart-o
-                      |  Lista de deseado
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                  li
-                    a(href='#')
-                      i.fa.fa-exchange
-                      |  Comparar
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                  li
-                    a(href='#')
-                      i.fa.fa-check
-                      |  Checkout
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                  li
-                    a(href='/login')
-                      i.fa.fa-unlock-alt
-                      |  Iniciar Sesion
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                  li
-                    a(href='/registro')
-                      i.fa.fa-user-plus
-                      |  Crear Cuenta
+                if login 
+                    .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+
+                      .header-btns-icon
+                        i.fa.fa-user-o
+                      
+                      strong.text-uppercase
+                        | Mi Cuenta 
+                    a.text-uppercase(href='/adminusr') Mi Cuenta
+                    |/
+                    a.text-uppercase(href='/logout') Cerrar Sesion
+                    ul.custom-menu
+                      li
+                        a(href='/adminusr')
+                          i.fa.fa-user-o
+                          |  Mi Cuenta
+
+                      li
+                        a(href='#')
+                          i.fa.fa-check
+                          |  Checkout
+                      
+                      li
+                        a(href='/logout')
+                          i.fa.fa-lock-alt
+                          |  Cerrar Sesion
+                     
+                else
+                        .dropdown-toggle(role='button', data-toggle='dropdown', aria-expanded='true')
+                            .header-btns-icon
+                             i.fa.fa-user-o
+                          
+                            strong.text-uppercase
+                              | Mi Cuenta    
+                        | 
+                        a.text-uppercase(href='/login') Log-In
+                        |  / 
+                        a.text-uppercase(href='/registro') Crear Cuenta
+                        | 
+                        ul.custom-menu
+
+                          li
+                            a(href='/login')
+                              i.fa.fa-unlock-alt
+                              |  Iniciar Sesion
+                          li
+                            a(href='/registro')
+                              i.fa.fa-user-plus
+                              | Crear Cuenta
+              
               // /Account
               // Cart
               li.header-cart.dropdown.default-dropdown
                 a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
                   .header-btns-icon
                     i.fa.fa-shopping-cart
-                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    
                     span.qty 1
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  
                   strong.text-uppercase Mi carrito:
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  
                   br
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  
                   span $99.99
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 .custom-menu
                   #shopping-cart
                     .shopping-cart-list
                       .product.product-widget
                         .product-thumb
                           img(src='/img/thumb-product01.jpg', alt='')
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        
                         .product-body
                           h3.product-price
                             | $32.50 
                             span.qty x3
-                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                          
                           h2.product-name
-                            a(href='/producto') Product Name Goes Here
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                            a(href='#') Product Name Goes Here
+                        
                         button.cancel-btn
                           i.fa.fa-trash
-                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      
                       .product.product-widget
                         .product-thumb
                           img(src='/img/thumb-product01.jpg', alt='')
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                        
                         .product-body
                           h3.product-price
                             | $32.50 
                             span.qty x3
-                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                          
                           h2.product-name
-                            a(href='/producto') Product Name Goes Here
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                            a(href='#') Product Name Goes Here
+                        
                         button.cancel-btn
                           i.fa.fa-trash
-                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    
                     .shopping-cart-btns
                       button.main-btn View Cart
-                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      
                       button.primary-btn
                         | Checkout 
                         i.fa.fa-arrow-circle-right
@@ -181,7 +189,8 @@ body
               li.nav-toggle
                 button.nav-toggle-btn.main-btn.icon-btn
                   i.fa.fa-bars
-              // / Mobile nav toggle
+                  
+              // / Mobile nav toggles
         // header
       // container
     // /HEADER
@@ -198,20 +207,20 @@ body
                 span.menu-header
                   | Menu 
                   i.fa.fa-bars
-                | &#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 ul.menu-list
                   li
                     a(href='/') Incio
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  | 
                   li
                     a(href='#') Metodo de pago/Entregas
                   |             
                   li
                     a(href='#') Quienes somos
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  | 
                   li
                     a(href='#') Contactenos
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  | 
                   li
                     a(href='#')
               // menu nav
@@ -244,19 +253,19 @@ body
                 li
                   a(href='#')
                     i.fa.fa-facebook
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#')
                     i.fa.fa-twitter
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#')
                     i.fa.fa-instagram
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#')
                     i.fa.fa-google-plus
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#')
                     i.fa.fa-pinterest
@@ -266,20 +275,20 @@ body
           .col-md-3.col-sm-6.col-xs-6
             .footer
               h3.footer-header My Account
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              | 
               ul.list-links
                 li
                   a(href='#') My Account
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#') My Wishlist
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#') Compare
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#') Checkout
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='/login') Login
           // /footer widget
@@ -288,17 +297,17 @@ body
           .col-md-3.col-sm-6.col-xs-6
             .footer
               h3.footer-header Customer Service
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              | 
               ul.list-links
                 li
                   a(href='#') About Us
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#') Shiping &amp; Return
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#') Shiping Guide
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 li
                   a(href='#') FAQ
           // /footer widget
@@ -306,13 +315,13 @@ body
           .col-md-3.col-sm-6.col-xs-6
             .footer
               h3.footer-header Stay Connected
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              | 
               p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              | 
               form
                 .form-group
                   input.input(placeholder='Enter Email Address')
-                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                | 
                 button.primary-btn Join Newslatter
           // /footer subscribe
         // /row

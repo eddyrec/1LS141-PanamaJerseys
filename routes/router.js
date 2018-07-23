@@ -112,7 +112,22 @@ router.get('/shoppping-cart', function(req , res, next){
 //PERFIL
 
 router.get('/perfil', isLoggedIn, function(req, res, next){
-	res.render('/perfil');
+
+	
+	res.render('perfil',{
+		
+		usuario:req.user.usuario,
+		nombre:req.user.nombre,
+        apellido:req.user.apellido,
+     	usuario:req.user.usuario,
+    	password:req.user.password,
+        correo:req.user.correo,
+        sexo:req.user.sexo,
+        direccion1:req.user.direccion1,
+        direccion2:req.user.direccion2,
+        telefono:req.user.telefono,
+	
+	});
 });
 
 
@@ -282,7 +297,7 @@ function isAdmin (req, res, next){
 	if(req.user.admin ==='admin'){
 		return next();
 	}
-	res.redirect('/')
+	res.redirect('/perfil')
 }
 
 function Cart(oldCart){

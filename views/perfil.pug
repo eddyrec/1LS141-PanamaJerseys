@@ -1,0 +1,103 @@
+extends base.pug
+block head
+    link(rel="stylesheet", href="/css/perfil.css")
+block content
+    .card.card-container
+
+          .w.mt-5.mb-5
+            form.l(action='/editarP', method='POST')
+              span.login100-form-title.p-b-32
+                | Editar mi Perfil
+              | 
+              span.txt1.p-b-11
+                | Nombre
+              | 
+              .wrap-input100.validate-input.m-b-8
+                input.input100(type='text', name='nombre' value=nombre)
+                | 
+                span.focus-input100
+              | 
+              | 
+              span.txt1.p-b-11
+                | Apellido
+              | 
+              .wrap-input100.validate-input.m-b-8
+                input.input100(type='text', name='apellido' value=apellido)
+                | 
+                span.focus-input100
+              | 
+              | 
+              span.txt1.p-b-11
+                | Usuario
+              | 
+              .wrap-input100.validate-input.m-b-12
+                | 
+                input.input100(type='text', name='usuario', value=usuario, disabled)
+                | 
+                span.focus-input100
+              span.txt1.p-b-11
+                | Password
+              | 
+              .wrap-input100.validate-input.m-b-12
+                | 
+                input.input100(type='password', name='password' )
+                | 
+                span.focus-input100
+              span.txt1.p-b-11
+                | Correo
+              | 
+              .wrap-input100.validate-input.m-b-12
+                | 
+                input.input100(type='email', name='correo' value=correo)
+                | 
+                span.focus-input100
+              span.txt1.p-b-11
+                | Sexo
+              
+              .wrap-input100.validate-input.m-b-12
+                select#sexo(name="sexo")
+                  option(value="hombre") Hombre
+                  option(value="mujer") Mujer
+                span.focus-input100
+
+              span.txt1.p-b-11
+                | Direccion 1
+              | 
+              .wrap-input100.validate-input.m-b-8
+                input.input100(type='text', name='direccion1' value=direccion1)
+                | 
+                span.focus-input100
+              | 
+              | 
+
+              span.txt1.p-b-11
+                | Direccion 2
+              | 
+              .wrap-input100.validate-input.m-b-8
+                input.input100(type='text', name='direccion2' value=direccion2)
+                | 
+                span.focus-input100
+              | 
+              | 
+               
+              span.txt1.p-b-11
+                | Telefono
+              | 
+              .wrap-input100.validate-input.m-b-8
+                input.input100(type='text', name='telefono' value=telefono)
+                | 
+                span.focus-input100
+              | 
+              | 
+               
+               
+              | 
+              .container-login100-form-btn
+                input(type='hidden', name='_csrf', value=csrfToken)
+                button.login100-form-btn
+                  | Actualizar
+    .card.card-container
+        span.login100-form-title.p-b-32
+                | Mis Ordenes
+        |#{password}
+
