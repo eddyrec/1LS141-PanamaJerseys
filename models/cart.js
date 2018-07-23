@@ -16,9 +16,9 @@ module.exports = function Cart(oldCart) {
 
     this.reduceByOne = function(id) {
         this.items[id].qty--;
-        this.items[id].price -= this.items[id].item.price;
+        this.items[id].precio -= this.items[id].item.precio;
         this.totalQty--;
-        this.totalPrice -= this.items[id].item.price;
+        this.totalPrice -= this.items[id].item.precio;
 
         if (this.items[id].qty <= 0) {
             delete this.items[id];
@@ -27,7 +27,7 @@ module.exports = function Cart(oldCart) {
 
     this.removeItem = function(id) {
         this.totalQty -= this.items[id].qty;
-        this.totalPrice -= this.items[id].price;
+        this.totalPrice -= this.items[id].precio;
         delete this.items[id];
     };
     

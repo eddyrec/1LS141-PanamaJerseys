@@ -130,47 +130,18 @@ body
                   .header-btns-icon
                     i.fa.fa-shopping-cart
                     | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                    span.qty 1
+                    span   #{session.cart ? session.cart.totalQty :null}
                   | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
                   strong.text-uppercase Mi carrito:
                   | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
                   br
                   | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                  span $99.99
+                  span   #{session.cart ? session.cart.totalPrice:null}
                 | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
                 .custom-menu
                   #shopping-cart
                     .shopping-cart-list
-                      .product.product-widget
-                        .product-thumb
-                          img(src='/img/thumb-product01.jpg', alt='')
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                        .product-body
-                          h3.product-price
-                            | $32.50 
-                            span.qty x3
-                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                          h2.product-name
-                            a(href='#') Product Name Goes Here
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                        button.cancel-btn
-                          i.fa.fa-trash
-                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                      .product.product-widget
-                        .product-thumb
-                          img(src='/img/thumb-product01.jpg', alt='')
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                        .product-body
-                          h3.product-price
-                            | $32.50 
-                            span.qty x3
-                          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                          h2.product-name
-                            a(href='#') Product Name Goes Here
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                        button.cancel-btn
-                          i.fa.fa-trash
-                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                      
                     .shopping-cart-btns
                       button.main-btn View Cart
                       | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;

@@ -52,6 +52,14 @@ router.get('/add-to-cart/:id', function(req, res, next){
 	})
 });
 
+router.get('/shopping-cart', function(req , res, next){
+	if (!req.session.cart){
+		return res.render('shopping-cart', {products:null});
+	}
+	var cart = new Cart(req.session.cart);
+	res.render('shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice})
+});
+
 router.get('/producto/:productoid', function(req, res){
 
 	var id= req.params.productoid;
@@ -109,13 +117,7 @@ router.post('/login', passport.authenticate('local.signin',{
 
 
 
-router.get('/shoppping-cart', function(req , res, next){
-	if (!req.session.cart){
-		return res.render('shopping-cart', {products:null});
-	}
-	var cart = new Cart(req.session.cart);
-	res.render('/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice})
-});
+
 
 //PERFIL
 
