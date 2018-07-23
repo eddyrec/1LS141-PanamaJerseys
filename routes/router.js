@@ -8,7 +8,7 @@ let user = require('../models/user');
 let usuarios = require('../models/usuarios');
 let estados = require('../models/estados');
 let productos = require('../models/productos');
-//let Cart = require('../models/cart');
+let Cart = require('../models/cart');
 
 
 let csrfProtection = csrf();
@@ -36,7 +36,20 @@ router.get('/', function(req, res, next){
 	});
 });
 
+router.get('/add-to-cart/:id', function(req, res, next){
+	var productoid = req.params.id;
+	var cart = new Cart(req.session.cart ? req.session.cart : { });
 
+	productos.findById(productoid, function(err, producto){
+		if (err){
+			return res.redirect('/');
+		}
+		cart.add(producto, productos.id);
+		req.session.cart = cart;
+		console.log(req.session.cart);
+		res.redirect('/');
+	})
+});
 
 router.get('/producto/:productoid', function(req, res){
 
@@ -93,20 +106,7 @@ router.post('/login', passport.authenticate('local.signin',{
 
 // CARRITO
 
-router.get('/add-to-cart/:id', function(req, res, next){
-	var productoid = req.params.id;
-	var cart = new Cart(req.session.cart ? req.session.cart : {items: {} });
 
-	productos.findById(productoid, function(err, producto){
-		if (err){
-			return res.redirect('/');
-		}
-		cart.add(producto, producto.id);
-		req.session.cart = cart;
-		console.log(req.session.cart);
-		res.redirect('/');
-	})
-});
 
 router.get('/shoppping-cart', function(req , res, next){
 	if (!req.session.cart){
