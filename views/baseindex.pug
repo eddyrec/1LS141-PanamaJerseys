@@ -112,48 +112,19 @@ body
                 a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
                   .header-btns-icon
                     i.fa.fa-shopping-cart
-                    
-                    span.qty 1
+
+                    span   #{session.cart ? session.cart.totalQty :null}
                   
                   strong.text-uppercase Mi carrito:
                   
                   br
                   
-                  span $99.99
+                  span   #{session.cart ? session.cart.totalPrice:null}
                 | 
                 .custom-menu
                   #shopping-cart
                     .shopping-cart-list
-                      .product.product-widget
-                        .product-thumb
-                          img(src='/img/thumb-product01.jpg', alt='')
-                        
-                        .product-body
-                          h3.product-price
-                            | $32.50 
-                            span.qty x3
-                          
-                          h2.product-name
-                            a(href='#') Product Name Goes Here
-                        
-                        button.cancel-btn
-                          i.fa.fa-trash
-                      
-                      .product.product-widget
-                        .product-thumb
-                          img(src='/img/thumb-product01.jpg', alt='')
-                        
-                        .product-body
-                          h3.product-price
-                            | $32.50 
-                            span.qty x3
-                          
-                          h2.product-name
-                            a(href='#') Product Name Goes Here
-                        
-                        button.cancel-btn
-                          i.fa.fa-trash
-                    
+                                          
                     .shopping-cart-btns
                       button.main-btn View Cart
                       
@@ -172,7 +143,7 @@ body
     // /HEADER
     // Page Content
 
-    block contenido
+block contenido
 
 
     // Footer
@@ -193,3 +164,7 @@ body
     script(src='/js/jquery.zoom.min.js')
     |     
     script(src='/js/main.js')
+
+
+
+

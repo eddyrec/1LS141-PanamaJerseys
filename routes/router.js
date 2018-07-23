@@ -1,6 +1,7 @@
 "use strict";
 let express = require('express');
 let router = express.Router();
+let Cart = require('../models/cart');
 let csrf = require('csurf');
 let passport = require('passport');
 
@@ -8,7 +9,7 @@ let user = require('../models/user');
 let usuarios = require('../models/usuarios');
 let estados = require('../models/estados');
 let productos = require('../models/productos');
-let Cart = require('../models/cart');
+
 
 
 let csrfProtection = csrf();
@@ -44,7 +45,7 @@ router.get('/add-to-cart/:id', function(req, res, next){
 		if (err){
 			return res.redirect('/');
 		}
-		cart.add(producto, productos.id);
+		cart.add(producto, producto.id);
 		req.session.cart = cart;
 		console.log(req.session.cart);
 		res.redirect('/');

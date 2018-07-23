@@ -113,13 +113,13 @@ body
                   .header-btns-icon
                     i.fa.fa-shopping-cart
                     
-                    span.qty 1
+                    span   #{session.cart ? session.cart.totalQty :null}
                   
                   strong.text-uppercase Mi carrito:
                   
                   br
                   
-                  span $99.99
+                  span   #{session.cart ? session.cart.totalPrice:null}
                 | 
                 .custom-menu
                   #shopping-cart
