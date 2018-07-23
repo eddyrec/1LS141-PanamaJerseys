@@ -1,31 +1,29 @@
 extends basehead
 
 block contenido
-    if productos
+    if products
         .row
             .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
                 ul.list-group
-                    - var produ = productos
-                    - if (produ.length)
-                    - produ.forEach(function(producto){
+                    - var values = products
+                    each val in values.length
                         li.list-group-item
                             span.badge #{session.cart.qty}
-                            strong {{ this.item.title }}
-                            span.label.label-success ${{ this.price }}
+                            strong #{session.cart.title}
+                            span.label.label-success #{session.cart.precio}
                             .btn-group
                                 button.btn.btn-primary.btn-xs.dropdown-toggle(type='button', data-toggle='dropdown')
                                     | Action 
                                     span.caret
                                 ul.dropdown-menu
                                     li
-                                        a(href='/reduce/{{this.item._id}}') Reduce by 1
+                                        a(href='/reduce/#{session.cart._id}') Reduce by 1
                                     li
-                                        a(href='/remove/{{this.item._id}}') Remove All
+                                        a(href='/remove/#{session.cart._id}') Remove All
                         |
-                    - });
         .row
             .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
-                strong Total: {{ totalPrice }}
+                strong Total: #{session.cart.totalPrice}
         hr
         .row
             .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
