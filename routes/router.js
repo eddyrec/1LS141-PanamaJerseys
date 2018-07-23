@@ -26,8 +26,9 @@ router.get('/', function(req, res, next){
 		for(var i = 0; i < docs.lenght; i +=chunkSize){
 			productosChunk.push(docs.slice(i,i + chunkSize));
 		}
-		res.render('index', {tittle: 'Shopping Cart', productos: docs});
-	});
+		productos=docs;
+		res.render('index', {productos});
+	});	
 });
 
 
@@ -111,6 +112,7 @@ router.get('/shoppping-cart', function(req , res, next){
 
 //PERFIL
 
+<<<<<<< HEAD
 router.get('/perfil', isLoggedIn, function(req, res, next){
 
 	
@@ -127,6 +129,15 @@ router.get('/perfil', isLoggedIn, function(req, res, next){
         direccion2:req.user.direccion2,
         telefono:req.user.telefono,
 	
+=======
+router.get('/perfil/:id', isLoggedIn, function(req, res, next){
+	var perfilid = req.params.id;
+	usuarios.findById(perfilid, function(error, usuarios){
+		if(error){
+			return res.redirect('/login');
+		}
+		res.render('perfil',{csrfToken: req.csrfToken(),usuarios:req.user.usuario, modelo:usuarios});
+>>>>>>> 3889d2b5861c0e8cd3f5c11d55166a941d06d93f
 	});
 });
 
@@ -144,7 +155,6 @@ router.get('/adminusr',isLoggedIn,isAdmin,function(req, res, next){
 		else if(!users)
 			users = [];
 		else
-			
 			res.render('adminusr',{csrfToken: req.csrfToken(),usuario:req.user.usuario, modelo:users});
 	}); 
 });
