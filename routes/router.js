@@ -141,7 +141,7 @@ router.post('/login', passport.authenticate('local.signin',{
 
 router.get('/perfil', isLoggedIn, function(req, res, next){
 
-	
+	let messages = req.flash('error');
 	res.render('perfil',{
 		
 		usuario:req.user.usuario,
@@ -153,9 +153,60 @@ router.get('/perfil', isLoggedIn, function(req, res, next){
         sexo:req.user.sexo,
         direccion1:req.user.direccion1,
         direccion2:req.user.direccion2,
-        telefono:req.user.telefono,
+		telefono:req.user.telefono,
+		messages: messages, 
+		hasErrors: messages.length > 0,
+		csrfToken: req.csrfToken()
 	
 	});
+});
+
+router.post('/editarP', isLoggedIn, function(req, res, next){
+usuarios.findById(req.user.id, function (err, user) {
+
+	// todo: don't forget to handle err
+
+	if (!user) {
+		 req.flash('error', 'No account found');
+		return res.redirect('/perfil');
+	}
+
+	// good idea to trim 
+	var email = req.body.correo.trim();
+	var sexo = req.body.sexo.trim();
+	var firstname = req.body.nombre.trim();
+	var lastname = req.body.apellido.trim();
+	var password = req.body.password.trim();
+	var direccion1 = req.body.direccion1.trim();
+	var direccion2 = req.body.direccion2.trim();
+	var telefono = req.body.telefono.trim();
+
+
+
+	// validate 
+	if (!email || !sexo || !firstname || !lastname || !password|| !direccion1 || !telefono) { // simplified: '' is a falsey
+		req.flash('error', 'One or more fields are empty');
+		 return res.redirect('/perfil'); // modified
+	}
+
+	// no need for else since you are returning early ^
+	user.correo = email;
+	user.sexo = sexo; // why do you have two? oh well
+	user.nombre = firstname;
+	user.apellido = lastname;
+	user.password = password;
+	user.direccion1 = direccion1;
+	user.direccion2 = direccion2;
+	user.telefono = telefono;
+
+	// don't forget to save!
+	user.save(function (err) {
+
+		// todo: don't forget to handle err
+
+		res.redirect('/perfil');
+	});
+});
 });
 
 

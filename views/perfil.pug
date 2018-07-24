@@ -3,6 +3,10 @@ block head
     link(rel="stylesheet", href="/css/perfil.css")
 block content
     .card.card-container
+          if hasErrors
+            .alert.alert-danger
+              each lista in messages
+                p  #{lista}
 
           .w.mt-5.mb-5
             form.l(action='/editarP', method='POST')
@@ -40,7 +44,7 @@ block content
               | 
               .wrap-input100.validate-input.m-b-12
                 | 
-                input.input100(type='password', name='password' )
+                input.input100(type='password', name='password', value=password )
                 | 
                 span.focus-input100
               span.txt1.p-b-11

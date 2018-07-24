@@ -13,11 +13,10 @@ block contenido
                   | Categorias 
                   i.fa.fa-list
                 ul.category-list
-                  li
-                    a(href='#') Liga X
+                  
                   li.dropdown.mega-dropdown
                     a.dropdown-toggle(data-toggle='dropdown' aria-expanded='true')
-                      | Liga Y 
+                      | Mundial
                       i.fa.fa-caret-down
                     .custom-menu
                       .row
@@ -25,20 +24,19 @@ block contenido
                           ul.list-links
                             li
                               h3.list-links-title Equipos
-                            li
-                              a(href='#') Equipo 1
-                            li
-                              a(href='#') Equipo 2
-                            li
-                              a(href='#') Equipo 3
-                            li
-                              a(href='#') Equipo 4
-                            li
-                              a(href='#') Equipo 5
+                            
+                            /////////////////
+                            - var produ = productos
+                            
+                            - produ.forEach(function(producto){
+                                if producto.liga === "Mundial"
+                                 li
+                                  a(href='/producto/'+producto.id) #{producto.titulo}
+                            - });
                           hr.hidden-md.hidden-lg
                   li.dropdown.mega-dropdown
                     a.dropdown-toggle(data-toggle='dropdown' aria-expanded='true')
-                      | Liga Z 
+                      | Liga Espanola 
                       i.fa.fa-caret-down
                     .custom-menu
                       .row
@@ -46,22 +44,20 @@ block contenido
                           ul.list-links
                             li
                               h3.list-links-title Equipos
-                            li
-                              a(href='#') Equipo 1
-                            li
-                              a(href='#') Equipo 2
-                            li
-                              a(href='#') Equipo 3
-                            li
-                              a(href='#') Equipo 4
-                            li
-                              a(href='#') Equipo 5
+                            
+                            /////////////////
+                            - var produ = productos
+                            
+                            - produ.forEach(function(producto){
+                                if producto.liga === "Espanola"
+                                 li
+                                  a(href='/producto/'+producto.id) #{producto.titulo}
+                            - });
                           hr.hidden-md.hidden-lg
-                  li
-                    a(href='#') Liga XX
+                  
                   li.dropdown.mega-dropdown
                     a.dropdown-toggle(data-toggle='dropdown' aria-expanded='true')
-                      | Liga XY 
+                      | Liga Alemana 
                       i.fa.fa-caret-down
                     .custom-menu
                       .row
@@ -69,19 +65,37 @@ block contenido
                           ul.list-links
                             li
                               h3.list-links-title Equipos
-                            li
-                              a(href='#') Equipo 1
-                            li
-                              a(href='#') Equipo 2
-                            li
-                              a(href='#') Equipo 3
-                            li
-                              a(href='#') Equipo 4
-                            li
-                              a(href='#') Equipo 5
+                            
+                            /////////////////
+                            - var produ = productos
+                            
+                            - produ.forEach(function(producto){
+                                if producto.liga === "Alemana"
+                                 li
+                                  a(href='/producto/'+producto.id) #{producto.titulo}
+                            - });
                           hr.hidden-md.hidden-lg
-                  li
-                    a(href='#') Liga XZ
+                  li.dropdown.mega-dropdown
+                    a.dropdown-toggle(data-toggle='dropdown' aria-expanded='true')
+                      | Liga Inglesa 
+                      i.fa.fa-caret-down
+                    .custom-menu
+                      .row
+                        .col-md-4
+                          ul.list-links
+                            li
+                              h3.list-links-title Equipos
+                            
+                            /////////////////
+                            - var produ = productos
+                            
+                            - produ.forEach(function(producto){
+                                if producto.liga === "Inglesa"
+                                 li
+                                  a(href='/producto/'+producto.id) #{producto.titulo}
+                            - });
+                          hr.hidden-md.hidden-lg
+                 
 
               // /category nav
               // menu nav
