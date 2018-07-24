@@ -113,13 +113,13 @@ body
                   .header-btns-icon
                     i.fa.fa-shopping-cart
                     
-                    span   #{session.cart ? session.cart.totalQty :null}
+                    span   #{session.cart ? session.cart.totalQty :0}
                   
                   strong.text-uppercase Mi carrito:
                   
                   br
-                  
-                  span   #{session.cart ? session.cart.totalPrice:null}
+                  - total = (session.cart ? session.cart.totalPrice :0).toFixed(2);
+                  span   #{total}
                 | 
                 .custom-menu
                   #shopping-cart
@@ -146,7 +146,6 @@ body
     // FOOTER
     footer#footer.section.section-grey
       // container
-      hr
       .container
         // row
         .row
@@ -155,29 +154,29 @@ body
             .footer
               // footer logo
               .footer-logo
-                a.logo(href='/')
+                a.logo(href='#')
                   img(src='/img/logo-bandera.png', alt='')
               // /footer logo
               p
-                | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                | Panama Jerseys tu tienda favorita para compras de camisetas deportivas
               // footer social
               ul.footer-social
                 li
                   a(href='#')
                     i.fa.fa-facebook
-                
+                | 
                 li
                   a(href='#')
                     i.fa.fa-twitter
-                
+                | 
                 li
                   a(href='#')
                     i.fa.fa-instagram
-                
+                | 
                 li
                   a(href='#')
                     i.fa.fa-google-plus
-                
+                | 
                 li
                   a(href='#')
                     i.fa.fa-pinterest
@@ -186,55 +185,52 @@ body
           // footer widget
           .col-md-3.col-sm-6.col-xs-6
             .footer
-              h3.footer-header My Account
-              
+              h3.footer-header Mi Cuenta
+              | 
               ul.list-links
                 li
-                  a(href='#') My Account
-                
+                  a(href='/perfil') Perfil
+                | 
                 li
-                  a(href='#') My Wishlist
-                
+                  a(href='/shopping-cart') Carrito
+                | 
                 li
-                  a(href='#') Compare
-                
+                  a(href='/logout') Cerrar Sesion
+                | 
                 li
-                  a(href='#') Checkout
-                
-                li
-                  a(href='#') Login
+                  a(href='/login') Iniciar Sesion
           // /footer widget
           .clearfix.visible-sm.visible-xs
           // footer widget
           .col-md-3.col-sm-6.col-xs-6
             .footer
-              h3.footer-header Customer Service
-              
+              h3.footer-header Panama jerseys
+              | 
               ul.list-links
                 li
-                  a(href='#') About Us
-                
+                  a(href='/') Inicio
+                | 
                 li
-                  a(href='#') Shiping &amp; Return
-                
+                  a(href='/pago_entrega') Pago / entregas
+                | 
                 li
-                  a(href='#') Shiping Guide
-                
+                  a(href='/quienes') Quienes somos
+                | 
                 li
-                  a(href='#') FAQ
+                  a(href='/contacto') Contactenos
           // /footer widget
           // footer subscribe
           .col-md-3.col-sm-6.col-xs-6
             .footer
-              h3.footer-header Stay Connected
-              
-              p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-              
+              h3.footer-header Mantente al tanto
+              | 
+              p Mantente al corriente con nuestos nuevos productos u ofertas.
+              | 
               form
                 .form-group
-                  input.input(placeholder='Enter Email Address')
-                
-                button.primary-btn Join Newslatter
+                  input.input(placeholder='Correo electronico')
+                | 
+                button.primary-btn Anótame
           // /footer subscribe
         // /row
         hr
@@ -247,10 +243,7 @@ body
               | Copyright &copy;
               script.
                 document.write(new Date().getFullYear());
-              |  All rights reserved | This template is made with 
-              i.fa.fa-heart-o(aria-hidden='true')
-              |  by 
-              a(href='https://colorlib.com', target='_blank') Colorlib
+              |  All rights reserved Panama jerseys
               // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
             // /footer copyright
         // /row
