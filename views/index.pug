@@ -156,7 +156,7 @@ block contenido
                       a(href="/producto/" + producto.id) #{producto.titulo}
                     h5 $#{producto.precio}
                     p.card-text #{producto.descripcion}  
-                  a.btn.btn-success.pull-right(href='/add-to-cart/' + producto.id ,role="button") Comprar
+                  a.btn.btn-success.pull-right(href="/producto/" + producto.id ,role="button") Ver
                   .card-footer
                     small.text-muted ★ ★ ★ ★ ☆
               - });
