@@ -37,15 +37,16 @@ router.get('/', function(req, res, next){
 	});
 });
 
-router.get('/add-to-cart/:id', function(req, res, next){
+router.post('/add-to-cart/:id', function(req, res, next){
 	var productoid = req.params.id;
 	var cart = new Cart(req.session.cart ? req.session.cart : { });
+	var tama = req.body.tamano;
 
 	productos.findById(productoid, function(err, producto){
 		if (err){
 			return res.redirect('/');
 		}
-		cart.add(producto, producto.id);
+		cart.add(producto, producto.id,tama);
 		req.session.cart = cart;
 		console.log(req.session.cart);
 		res.redirect('/');
@@ -85,7 +86,8 @@ router.get('/producto/:productoid', function(req, res){
     .exec()
     .then(result => {
         res.status(200).render("producto", {
-            producto: result
+			producto: result,
+			csrfToken: req.csrfToken()
         });
     })
     .catch(err => {
@@ -184,7 +186,7 @@ usuarios.findById(req.user.id, function (err, user) {
 
 
 	// validate
-	 
+
 	if (!email || !sexo || !firstname || !lastname || !password|| !direccion1 || !telefono) { // simplified: '' is a falsey
 		req.flash('error', 'One or more fields are empty');
 		 return res.redirect('/perfil'); // modified
