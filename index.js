@@ -52,7 +52,8 @@ app.use(session({
   })
 
 
-// Routes
+// Routess
+
 let routes = require('./routes/router');
 app.use('/',routes);
 app.use(function(req,res,next){

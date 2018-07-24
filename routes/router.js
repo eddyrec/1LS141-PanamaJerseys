@@ -81,20 +81,28 @@ router.get('/remove/:id', function(req, res, next) {
 
 router.get('/producto/:productoid', function(req, res){
 
+	
 	var id= req.params.productoid;
     productos.findById(id)
     .exec()
     .then(result => {
-        res.status(200).render("producto", {
-			producto: result,
-			csrfToken: req.csrfToken()
-        });
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: err
-        })
-})
+			console.log(result)
+        productos.find()
+                .exec()
+                .then(resultado2 => {
+					console.log(resultado2)
+                res.render('producto', {
+                    producto: result,
+                    productos: resultado2,
+                    
+                })
+            })
+            }   
+        ).catch(err => {
+            res.status(500).json({
+                error: err
+            })
+});
 	
 });
 
