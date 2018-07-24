@@ -183,7 +183,8 @@ usuarios.findById(req.user.id, function (err, user) {
 
 
 
-	// validate 
+	// validate
+	 
 	if (!email || !sexo || !firstname || !lastname || !password|| !direccion1 || !telefono) { // simplified: '' is a falsey
 		req.flash('error', 'One or more fields are empty');
 		 return res.redirect('/perfil'); // modified
