@@ -32,7 +32,19 @@ block contenido
               // menu nav
           // /container
     // /NAVIGATION
-
+    br
+    |
+    br
+    |
+    .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
+        h2 Objetos del carrito de compra
+    |
+    br
+    |
+    br
+    |
+    br
+    |
     if products
         .card.card-container
             .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
@@ -42,9 +54,10 @@ block contenido
                     - values.forEach(function(products){
                         li.list-group-item
                             span.badge Cantidad: #{products.qty} 
-                            strong #{products.item.titulo}  &nbsp;&nbsp;&nbsp;
+                            a.btn.strong(href="/producto/" + products.item._id ,role="button") #{products.item.titulo}  &nbsp;&nbsp;&nbsp;
                             strong Talla: #{products.tama}  &nbsp;&nbsp;
-                            span.label.label-success Precio: #{products.precio}
+                            - pcamisa = products.precio.toFixed(2);
+                            span.label.label-success Precio: #{pcamisa}
                             | &nbsp;&nbsp;&nbsp;&nbsp;
                             .btn-group
                                 button.btn.btn-primary.btn-xs.dropdown-toggle(type='button', data-toggle='dropdown')
@@ -56,9 +69,21 @@ block contenido
                                     li
                                         a(href='/remove/' + products.item._id) Eliminar todas las camisetas
                     - });
+        br
+        |
+        br
+        |
+        br
+        |
+        br
+        |
+        br
+        |
+        
         .row
             .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
-                strong Total: #{session.cart.totalPrice}
+                - total = session.cart.totalPrice.toFixed(2);
+                strong Total: #{total}
         hr
         .row
             .col-sm-5.col-md-5.col-md-offset-3.col-sm-offset-3
@@ -67,20 +92,33 @@ block contenido
             form(action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post' target='_top')
                 input(type='hidden' name='cmd' value='_xclick')
                 input(type='hidden' name='business' value='ptyjs@panamajs.com')
-                input(type='hidden' name='lc' value='ES')
+                input(type='hidden' name='lc' value='US')
                 input(type='hidden' name='item_name' value='Compra de camiseta')
                 input(type='hidden' name='item_number' value='id_test')
                 input(type='hidden' name='amount' value= session.cart.totalPrice)
                 input(type='hidden' name='currency_code' value='USD')
                 input(type='hidden' name='button_subtype' value='services')
-                input(type='hidden' name='no_note' value='1')
+                input(type='hidden' name='no_note' value='0')
+                input(type='hidden' name='cn' value='Talla de las camisetas' + products.tama)
                 input(type='hidden' name='no_shipping' value='2')
-                input(type='hidden' name='shipping' value='5.00')
-                input(type='hidden' name='bn' value='PP-BuyNowBF:btn_buynow_LG.gif:NonHosted')
-                input(type='image' src='https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynow_LG.gif' border='0' name='submit' alt='PayPal, la forma rápida y segura de pagar en Internet.')
-                img(alt='' border='0' src='https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif' width='1' height='1')
+                input(type='hidden' name='rm' value='1')
+                input(type='hidden' name='return' value='127.0.0.1:3000')
+                input(type='hidden' name='cancel_return' value='127.0.0.1:3000/shopping-cart')
+                input(type='hidden' name='bn' value='PP-BuyNowBF:btn_paynow_LG.gif:NonHosted')
+                input(type='image' src='https://www.sandbox.paypal.com/es_XC/i/btn/btn_paynow_LG.gif' border='0' name='submit' alt='PayPal, la forma más segura y rápida de pagar en línea.')
+                img(alt='' border='0' src='https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif' width='1' height='1')
+
 
     else 
         .row
             .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
                 h2 No tiene productos en el carrito
+
+    br
+    |
+    br
+    |
+    br
+    |
+    br
+    |

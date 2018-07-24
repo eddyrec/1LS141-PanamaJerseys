@@ -112,14 +112,14 @@ body
                 a.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
                   .header-btns-icon
                     i.fa.fa-shopping-cart
-
-                    span   #{session.cart ? session.cart.totalQty :null}
+                    
+                    span   #{session.cart ? session.cart.totalQty:0}
                   
                   strong.text-uppercase Mi carrito:
                   
                   br
-                  
-                  span   #{session.cart ? session.cart.totalPrice:null}
+                  - total = (session.cart ? session.cart.totalPrice :0).toFixed(2);
+                  span   #{total}
                 | 
                 .custom-menu
                   #shopping-cart
@@ -147,9 +147,6 @@ block contenido
 
 
     // Footer
-    footer.py-5.bg-dark
-      .container
-        p.m-0.text-center.text-white Copyright &copy; Your Website 2017
       // /.container
     // Bootstrap core JavaScript
   

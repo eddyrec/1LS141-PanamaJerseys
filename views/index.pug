@@ -174,14 +174,97 @@ block contenido
                   .card-footer
                     small.text-muted ★ ★ ★ ★ ☆
               - });
+
           // /.row
         // /.col-lg-9
       // /.row
     // /.container
     // Footer
-    footer.py-5.bg-dark
+    |
+    br
+    |
+    br
+    |
+    br
+    |
+    footer#footer.section.section-grey
+      // container
       .container
-        p.m-0.text-center.text-white Copyright &copy; Your Website 2017
+        // row
+        .row
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              // footer logo
+              .footer-logo
+                a.logo(href='#')
+                  img(src='/img/logo-bandera.png', alt='')
+              // /footer logo
+              p
+                | Panama Jerseys tu tienda favorita para compras de camisetas deportivas
+          // /footer widget
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Mi Cuenta
+              | 
+              ul.list-links
+                li
+                  a(href='/perfil') Perfil
+                | 
+                li
+                  a(href='/shopping-cart') Carrito
+                | 
+                li
+                  a(href='/logout') Cerrar Sesion
+                | 
+                li
+                  a(href='/login') Iniciar Sesion
+          // /footer widget
+          .clearfix.visible-sm.visible-xs
+          // footer widget
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Panama jerseys
+              | 
+              ul.list-links
+                li
+                  a(href='/') Inicio
+                | 
+                li
+                  a(href='/pago_entrega') Pago / entregas
+                | 
+                li
+                  a(href='/quienes') Quienes somos
+                | 
+                li
+                  a(href='/contacto') Contactenos
+          // /footer widget
+          // footer subscribe
+          .col-md-3.col-sm-6.col-xs-6
+            .footer
+              h3.footer-header Mantente al tanto
+              | 
+              p Mantente al corriente con nuestos nuevos productos u ofertas.
+              | 
+              form
+                .form-group
+                  input.input(placeholder='Correo electronico')
+                | 
+                button.primary-btn Anótame
+          // /footer subscribe
+        // /row
+        hr
+        // row
+        .row
+          .col-md-8.col-md-offset-2.text-center
+            // footer copyright
+            .footer-copyright
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              | Copyright &copy;
+              script.
+                document.write(new Date().getFullYear());
+              |  All rights reserved Panama jerseys
       // /.container
     // Bootstrap core JavaScript
   
