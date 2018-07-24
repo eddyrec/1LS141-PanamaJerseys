@@ -177,67 +177,49 @@ block contenido
                 .col-md-6
                   .product-body
                     .product-label
-                      span New
-                      | 
-                      span.sale -20%
+
                     | 
                     h2.product-name  #{producto.titulo}
                     | 
-                    h3.product-price
-                      |#{producto.precio}
+                    h3.product-price $#{producto.precio}
                      
                   | 
                   p
-                    strong Availability:
+                    strong Disponibilidad:
                     if producto.cantidad > 1
-                      |  Disponible
+                      |   Disponible
                     else
                       |  No disponible
                   | 
                   p
-                    strong Brand:
+                    strong Marca:
                     |  E-SHOP
                   | 
                   p
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                    | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    | #{producto.descripcion}
                   | 
                   .product-options
                     ul.size-option
                       li
-                        span.text-uppercase Size:
+                        span.text-uppercase Tamaño:
                       | 
-                      li.active
-                        a(href='#') S
-                      | 
-                      li
-                        a(href='#') XL
-                      | 
-                      li
-                        a(href='#') SL
+                      form(action='/post', id= 'tallas')
+                        input(type='radio', name='tamano', value='S')
+                        |  Small
+                        br
+                        input(type='radio', name='tamano', value='M')
+                        |  Medium
+                        br
+                        input(type='radio', name='tamano',value='L')
+                        |  Large
                     | 
                   | 
                   .product-btns
-                    .qty-input
-                      span.text-uppercase QTY: 
-                      | 
-                      input.input(type='number')
-                    | 
-                    a.primary-btn.add-to-cart(href='/add-to-cart/' + producto.id ,role="button")
+
+                    a.primary-btn.add-to-cart(href='/add-to-cart/' + producto.id ,method='post',role="button")
                       i.fa.fa-shopping-cart
                       
-                      |  Add to Cart
-                    | 
-                    .pull-right
-                      button.main-btn.icon-btn
-                        i.fa.fa-heart
-                      | 
-                      button.main-btn.icon-btn
-                        i.fa.fa-exchange
-                      | 
-                      button.main-btn.icon-btn
-                        i.fa.fa-share-alt
-              | 
+                      |  Agregar al carrito
               .col-md-12
                 .product-tab
                   ul.tab-nav

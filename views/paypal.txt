@@ -1,0 +1,50 @@
+            #paypal-button
+                script(src='https://www.paypalobjects.com/api/checkout.js')
+                script.
+                    paypal.Button.render({
+                        env: 'sandbox',
+                        client: {
+                            sandbox: 'demo_sandbox_client_id'
+                        },
+                        payment: function (data, actions) {
+                            return actions.payment.create({
+                                transactions: [{
+                                    amount: {
+                                        total: '#{session.cart.totalPrice}',
+                                        currency: 'USD'
+                                    }
+                                }]
+                            });
+                        },
+                        onAuthorize: function (data, actions) {
+                            return actions.payment.execute()
+                                .then(function () {
+                                    window.alert('Thank you for your purchase!');
+                                });
+                        }
+                    }, '#paypal-button');
+
+
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="C3LHWM7UDLR62">
+<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet.">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
+
+form(action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post')
+    input(type='hidden' name='cmd' value='_s-xclick')
+    input(type='hidden' name='business' value='ptyjs@panamajs.com')
+    input(type='hidden' name='lc' value='CA')
+    input(type='hidden' name='item_name' value='Camisetas deportivas')
+    input(type='hidden' name='button_subtype' value='ropa')
+    input(type='hidden' name='no_note' value='0')
+    input(type='hidden' name='cn' value='Add special instructions to the seller')
+    input(type='hidden' name='no_shipping' value='2')
+    input(name='amount' value='#{session.cart.totalPrice}')
+    input(type='hidden' name='currency_code' value='USD')
+    input(type='image' src='https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_paynow_LG.gif' border='0' name='submit' alt='PayPal, la forma rápida y segura de pagar en Internet.')
+    img(alt='' border='0' src='https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif' width='1' height='1')
