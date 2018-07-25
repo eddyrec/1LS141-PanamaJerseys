@@ -49,7 +49,8 @@ router.post('/add-to-cart/:id', function(req, res, next){
 		cart.add(producto, producto.id,tama);
 		req.session.cart = cart;
 		console.log(req.session.cart);
-		res.redirect('/');
+		req.flash('success', 'El producto ha sido agregado satisfactoriamente');
+		res.redirect('/producto/'+producto.id);
 	})
 });
 
@@ -81,7 +82,7 @@ router.get('/remove/:id', function(req, res, next) {
 
 router.get('/producto/:productoid', function(req, res){
 
-	
+	let messages = req.flash('success');
 	var id= req.params.productoid;
     productos.findById(id)
     .exec()
@@ -93,7 +94,10 @@ router.get('/producto/:productoid', function(req, res){
 					console.log(resultado2)
                 res.render('producto', {
                     producto: result,
-                    productos: resultado2,
+					productos: resultado2,
+					csrfToken: req.csrfToken(),
+					messages: messages, 
+					hasSuccess: messages.length > 0
                     
                 })
             })
@@ -372,6 +376,9 @@ function isAdmin (req, res, next){
 	res.redirect('/perfil')
 }
 
+router.get('*', function(req, res){
+	res.status(404).render('error404');
+});
 
 
 

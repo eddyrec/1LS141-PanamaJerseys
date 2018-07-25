@@ -157,7 +157,10 @@ block contenido
                 .col-md-6
                   .product-body
                     .product-label
-
+                      if hasSuccess
+                        .alert.alert-success
+                          each lista in messages
+                             p  #{lista}
                     | 
                     h2.product-name  #{producto.titulo}
                     | 
@@ -199,21 +202,7 @@ block contenido
                             |  Agregar al carrito
                     | 
                   | 
-
-              .col-md-12
-                .product-tab
-                  ul.tab-nav
-                    li.active
-                      a(data-toggle='tab', href='#tab1') Description
-                    | 
-                    li
-                      a(data-toggle='tab', href='#tab1') Details
-                  | 
-                  .tab-content
-                    #tab1.tab-pane.fade.in.active
-                      p
-                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        | irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        
     
     //FIN COMIDA             
      

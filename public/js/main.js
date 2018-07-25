@@ -120,7 +120,7 @@
   });
 
   // PRODUCT ZOOM
-  $('#product-main-view .product-view').zoom();
+  $('#product-main-viesw .product-visew').zoom();
 
   // PRICE SLIDER
   var slider = document.getElementById('price-slider');

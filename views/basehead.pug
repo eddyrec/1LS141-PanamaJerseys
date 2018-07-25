@@ -126,11 +126,9 @@ body
                     .shopping-cart-list
                     
                     .shopping-cart-btns
-                      button.main-btn View Cart
+                      a.button.main-btn(href='/shopping-cart', role= "button") View Cart
                       
-                      button.primary-btn
-                        | Checkout 
-                        i.fa.fa-arrow-circle-right
+                     
               // /Cart
               // Mobile nav toggle
               li.nav-toggle
@@ -146,6 +144,7 @@ body
     // FOOTER
     footer#footer.section.section-grey
       // container
+      hr
       .container
         // row
         .row
@@ -258,6 +257,6 @@ body
     
     script(src='/js/nouislider.min.js')
     
-    script(src='/js/jquery.zoom.min.js')
+    //- script(src='/js/jquery.zoom.min.js')
     
     script(src='/js/main.js')
