@@ -135,21 +135,15 @@ block contenido
                   img(src='/img/015206671222748eea1MJ1banner1.jpg', alt='')
                   
                   .banner-caption.text-center
-                    button.primary-btn Shop Now
+                    a.primary-btn(href="/", role= "button") Ir
                 // /banner
-                // banner
-                .banner.banner-1
-                  img(src='/img/015291185096f17295cMJVIPbanner3.png', alt='')
-                  
-                  .banner-caption
-                    button.primary-btn Shop Now
-                // /banner
+               
                 // banner
                 .banner.banner-1
                   img(src='/img/015205003916f338905MJ1banner2.jpg', alt='')
                   
                   .banner-caption
-                    button.primary-btn Shop Now
+                    a.primary-btn(href="/producto/5b5403ef42ddf47d97d64a95", role= "button") Comprar
                 // /banner
               // /home slick
             // /home wrap
@@ -161,6 +155,7 @@ block contenido
             - var produ = productos
             - if (produ.length)
               - produ.forEach(function(producto){
+                -if(producto.liga === "Mundial"){
                 .col-lg-4.col-md-6.mb-4
                   .card.h-0
                     a(href="/producto/" + producto.id)
@@ -173,6 +168,7 @@ block contenido
                   a.btn.btn-success.pull-right(href="/producto/" + producto.id ,role="button") Ver
                   .card-footer
                     small.text-muted ★ ★ ★ ★ ☆
+              -}      
               - });
 
           // /.row

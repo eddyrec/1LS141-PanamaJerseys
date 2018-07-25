@@ -352,7 +352,69 @@ router.post('/eliminarP', function(req, res, next){
 });
 
 
+//ADMINISTRACION DE INVENTARIO//
+//ADMIN INV
 
+router.get('/admin_inv',isLoggedIn,isAdmin,function(req, res, next){
+
+	productos.findAll(function(error,producto){
+		if(error)
+			next(error);
+		else if(!producto){
+			producto = [];
+			console.log("MAL");}
+		else
+			res.render('admin_inv',{csrfToken: req.csrfToken(),usuario:req.user.usuario, modelo:producto});
+	}); 
+});
+
+//INSERTAR INV
+router.post('/insertarI', function(req, res, next){
+	productos.insert(req.body.imagePath,req.body.titulo,req.body.descripcion,req.body.cantidad,req.body.precio,req.body.liga,req.body.talla, function(error,user){
+		if(error)
+			next(error);
+		else if(user){
+			var err = new Error('producto ya existente');
+			err.status = 401;
+			next(err);}
+		else
+			res.redirect('/admin_inv');
+	  });
+});
+
+// ACTUALIZAR INV
+router.post('/actualizarI', function(req, res, next){
+	productos.update(req.body.imagePath,req.body.titulo,req.body.descripcion,req.body.cantidad,req.body.precio,req.body.liga,req.body.talla, function(error,msg){
+		console.log(req.body.imagePath);
+		if(error)
+			next(error);
+		else if(!msg){
+			var err = new Error('producto no existe');
+			err.status = 401;
+			next (err);}
+		res.redirect('/admin_inv');
+		
+	  });
+});
+
+// //ELIMINAR INV
+router.post('/eliminarI', function(req, res, next){
+	productos.delete(req.body.imagePath, function(error,msg){
+		if(error)
+			next(error);
+		else if(msg){
+			var err = new Error('producto no existe');
+			err.status = 401;
+			next(err);
+		}
+		else{
+			console.log('exito');
+			res.redirect('/admin_inv');}
+	  });
+});
+
+
+/////////////////FUNCIONES DE LOCK ROUTES///////////////////////
 
 function isLoggedIn (req, res, next){
 	if(req.isAuthenticated()){

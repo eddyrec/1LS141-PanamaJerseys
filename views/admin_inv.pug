@@ -1,0 +1,78 @@
+extends baseadmin
+
+block contenido
+    .container
+        .row
+            .col
+                 h3 Bienvenido, #{usuario} !
+        .row
+            .col
+                h2 Lista de los productos registrados
+        .row
+            .col
+                 table.table.table-bordered.table-hover.table-responsive
+                    thead.thead-dark
+                        tr
+                            th #
+                            th imagePath 
+                            th Titulo 
+                            th Descripcion
+                            th Cantidad
+                            th Precio
+                            th Liga
+                            th Talla 
+                            th 
+                            th 
+                        tr 
+                            -var number = 0;
+                            each lista in modelo
+                                - number = number + 1
+                                form(action='/actualizarI', method='POST')
+                                    td #{number}  
+                                    td #{lista.imagePath}
+                                        input#imagePath(type='text' name='imagePath' value=lista.imagePath)
+                                    td #{lista.titulo}
+                                        input#titulo(type='text' name='titulo'  )
+                                    td #{lista.descripcion}
+                                        input#descripcion(type='text' name='descripcion')
+                                    td #{lista.cantidad}
+                                        input#cantidad(type='text' name='cantidad' )
+                                    td #{lista.precio}
+                                        input#precio(type='decimal' name='precio')
+                                    td #{lista.liga}
+                                        input#liga(type='text' name='liga')
+                                    td #{lista.talla}
+                                        input#talla(type='text' name='talla')
+                                    td 
+                                        input(type='hidden', name='_csrf', value=csrfToken)
+                                        input(type='submit',value='Actualizar').btn.btn-success
+                                form(action='/eliminarI', method='POST')
+                                    input(type='hidden', value=lista.imagePath, name='imagePath')
+                                    
+                                    td
+                                        input(type='hidden', name='_csrf', value=csrfToken)
+                                        input(type='submit',value='Borrar').btn.btn-danger
+                                tr 
+                            form(method='POST', action='/insertarI')
+                                td Nuevo
+                                td
+                                    input#imagePath(type='text' name='imagePath')
+                                td
+                                    input#titulo(type='text' name='titulo') 
+                                td
+                                    input#descripcion(type='text' name='descripcion')
+                                td
+                                    input#cantidad(type='text' name='cantidad')
+                                td
+                                    input#precio(type='decimal' name="precio")
+                                td
+                                    input#liga(type='text' name="liga")
+                                td
+                                    input#talla(type='text' name='talla')
+                                td(colspan='2' style='text-align:center')
+                                    input(type='hidden', name='_csrf', value=csrfToken)
+                                    input.btn.btn-primary(type='submit' value='Insertar') 
+                                
+                                    
+            
+                        
