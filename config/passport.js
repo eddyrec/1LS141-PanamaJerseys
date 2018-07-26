@@ -58,7 +58,7 @@ passport.use('local.signup', new LocalStrategy({
             if (err){
                 return done(err);
             }
-            return done(null, newUsuarios);
+            return done(null, newUsuarios,{message: 'Registrado!'});
         });
     }) ;   
 
@@ -90,7 +90,7 @@ passport.use('local.signin', new LocalStrategy({
         if (!user.validPassword(password)){
             return done(null, false, {message: 'Password Incorrecto'});
         }
-      return done(null, user);
+      return done(null, user,);
     }) ;   
 
 }));

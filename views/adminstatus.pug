@@ -16,7 +16,7 @@ block contenido
                             th #
                             th Numero de Orden
                             th Estado de Orden 
-                            th Fecha de Orden
+                            th Articulos
                             th Usuario  
                             th correo
                             th Direccion 1
@@ -34,8 +34,8 @@ block contenido
                                         input#ordernum(type='text' name='ordernum' value=lista.ordernum)
                                     td #{lista.orderstat}
                                         input#orderstat(type='text' name='orderstat')
-                                    td #{lista.orderdate}
-                                        input#orderdate(type='date' name='orderdate')
+                                    td #{lista.cart}
+                                        input#orderdate(type='input' name='cart')
                                     td #{lista.usuario}
                                         input#usuario(type='text' name='usuario' )    
                                     td #{lista.correo}
@@ -47,10 +47,12 @@ block contenido
                                     td #{lista.telefono}
                                         input#telefono(type='number' name='telefono')
                                     td 
+                                        input(type='hidden', name='_csrf', value=csrfToken)
                                         input(type='submit',value='Actualizar').btn.btn-success
                                 form(action='/eliminarP', method='POST')
                                     input(type='hidden', value=lista.ordernum, name='ordernum')
                                     td
+                                        input(type='hidden', name='_csrf', value=csrfToken)
                                         input(type='submit',value='Borrar').btn.btn-danger
                                 tr 
                             form(method='POST', action='/insertarP')
@@ -60,7 +62,7 @@ block contenido
                                 td
                                     input#orderstat(type='text' name='orderstat') 
                                 td
-                                    input#orderdate(type='date' name='orderdate')
+                                    input#cart(type='input' name='cart')
                                 td
                                     input#usuario(type='text' name='usuario')
                                 td
@@ -72,5 +74,6 @@ block contenido
                                 td
                                     input#telefono(type='number' name='telefono')       
                                 td(colspan='2' style='text-align:center')
+                                    input(type='hidden', name='_csrf', value=csrfToken)
                                     input.btn.btn-primary(type='submit' value='Insertar') 
                                 

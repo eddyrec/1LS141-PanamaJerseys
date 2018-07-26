@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
  var estadosSchema = new mongoose.Schema({
     ordernum: { type: String, unique: false, required: true, trim: true },
     orderstat: { type: String, unique: false, required: true, trim: true },
-    orderdate: { type: String, unique: false, required: true, trim: true },
-    usuario: { type: String, unique: false, required: true, trim: true },
+    cart: { type:Object, required: true },
+    usuario: { type: String, unique: false, required: true, trim: true},
     correo: { type: String, unique: false, required: true, trim: true },
     direccion1: { type: String, unique: false, required: true, trim: true },
     direccion2: { type: String, unique: false, required: false, trim: true },
@@ -24,7 +24,7 @@ estadosSchema.statics.findAll = function(callback){
     })
 }
 
-estadosSchema.statics.insert = function(ordernum,orderstat,orderdate,usuario,correo,direccion1,direccion2,telefono,callback){
+estadosSchema.statics.insert = function(ordernum,orderstat,cart,usuario,correo,direccion1,direccion2,telefono,callback){
     Estados.findOne({usuario:usuario},'usuario',function(err,user){
         if(err){
             return callback(err)
@@ -36,7 +36,7 @@ estadosSchema.statics.insert = function(ordernum,orderstat,orderdate,usuario,cor
             var data={
                 ordernum:ordernum,
                 orderstat:orderstat,
-                orderdate:orderdate,
+                cart:cart,
                 usuario:usuario,
                 correo:correo,
                 direccion1:direccion1,
@@ -49,8 +49,8 @@ estadosSchema.statics.insert = function(ordernum,orderstat,orderdate,usuario,cor
             })}
     })   
 }
-estadosSchema.statics.update = function(ordernum,orderstat,orderdate,usuario,correo,direccion1,direccion2,telefono,callback){
-    Estados.findOne({ordernum:ordernum},'ordernum orderstat orderdate usuario correo direccion1 direccion2 telefono',function(err,user){
+estadosSchema.statics.update = function(ordernum,orderstat,usuario,correo,direccion1,direccion2,telefono,callback){
+    Estados.findOne({ordernum:ordernum},'ordernum orderstat usuario correo direccion1 direccion2 telefono',function(err,user){
         if(err)
             return callback(err);
         else if(!user){
@@ -62,8 +62,7 @@ estadosSchema.statics.update = function(ordernum,orderstat,orderdate,usuario,cor
                     user.ordernum = ordernum;
                 if(orderstat)
                     user.orderstat = orderstat;
-                if(orderdate)
-                    user.orderdate = orderdate;
+                    
                 if(usuario)
                     user.usuario = usuario;
                 if(correo)

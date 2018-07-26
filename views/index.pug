@@ -112,7 +112,7 @@ block contenido
                     a(href='#') Metodo de pago/Entregas
                   |             
                   li
-                    a(href='#') Quienes somos
+                    a(href='/quienessomos') Quienes somos
                   
                   li
                     a(href='#') Contactenos
@@ -126,6 +126,10 @@ block contenido
         #home
           // container
           .container
+            if hasSuccess
+              .alert.alert-success
+                each lista in messages
+                 p  #{lista}
             // home wrap
             .home-wrap
               // home slick

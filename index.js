@@ -9,6 +9,7 @@ let passport = require('passport');
 let flash = require('connect-flash');
 let cookieParser = require('cookie-parser');
 let validator = require('express-validator');
+let paypal = require('paypal-rest-sdk');
 
 //Mongoose Connection 
 let mongoose = require('mongoose');
@@ -39,7 +40,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false,
 	store: new MongoStore({mongooseConnection: db}),
-	cookie: {maxAge: 180 * 60 * 1000}
+	cookie: {maxAge: 60 * 60 * 1000}
   }));
   app.use(flash());
   app.use(passport.initialize());
@@ -50,6 +51,14 @@ app.use(session({
 	  res.locals.session = req.session;
 	  next();
   })
+
+//PAYPAL
+
+paypal.configure({
+	'mode': 'sandbox', //sandbox or live
+	'client_id': 'AWfZgRM-Mn79vGWtCx1QgT2H1_lYZPFxQLfaBHNYlrmba7HBxHujKIO-GRzjFLnmwhM1uXR6LWV91-nx',
+	'client_secret': 'EGdlKQdcM5NrT8MtCde3Q4ycLBHWYJUMhQZxp2bFmHMOPrPEs4ExEkUx1iOnt-rwciT8KLro-MR-C0qa'
+  });
 
 
 // Routess

@@ -11,7 +11,7 @@ let estados = require('../models/estados');
 let productos = require('../models/productos');
 
 
-
+let paypal = require('paypal-rest-sdk');
 let csrfProtection = csrf();
 router.use(csrfProtection);
 
@@ -27,13 +27,17 @@ router.use(csrfProtection);
 //
 //router.get('/indexTEST', function(req, res, next){
 router.get('/', function(req, res, next){
+	let messages = req.flash('success');
 	productos.find(function(err, docs){
 		var productosChunk = [];
 		var chunkSize = 3;
 		for(var i = 0; i < docs.lenght; i +=chunkSize){
 			productosChunk.push(docs.slice(i,i + chunkSize));
 		}
-		res.render('index', {tittle: 'Shopping Cart', productos: docs});
+		res.render('index', {
+			tittle: 'Shopping Cart', 
+			productos: docs,messages: messages, 
+			hasSuccess: messages.length > 0});
 	});
 });
 
@@ -54,12 +58,12 @@ router.post('/add-to-cart/:id', function(req, res, next){
 	})
 });
 
-router.get('/shopping-cart', function(req , res, next){
+router.get('/shopping-cart',isLoggedIn, function(req , res, next){
 	if (!req.session.cart){
 		return res.render('shopping-cart', {products:null});
 	}
 	var cart = new Cart(req.session.cart);
-	res.render('shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice})
+	res.render('shopping-cart', {csrfToken: req.csrfToken(),products: cart.generateArray(), totalPrice: cart.totalPrice})
 });
 
 router.get('/reduce/:id', function(req, res, next) {
@@ -79,6 +83,123 @@ router.get('/remove/:id', function(req, res, next) {
     req.session.cart = cart;
     res.redirect('/shopping-cart');
 });
+
+
+
+router.post('/checkout', function(req, res, next){
+	var cart = new Cart(req.session.cart);
+	console.log("Carrito antes de Paypal");
+	console.log(cart);
+	const create_payment_json = {
+		"intent": "sale",
+		"payer": {
+			"payment_method": "paypal"
+		},
+		"redirect_urls": {
+			"return_url": "http://localhost:3000/success",
+			"cancel_url": "http://localhost:3000/shopping-cart"
+		},
+		"transactions": [{
+			"item_list": {
+				"items": [{
+					"name": "item",
+					"sku": "item",
+					"price": cart.totalPrice ,
+					"currency": "USD",
+					"quantity": 1}]
+			},
+			"amount": {
+				"currency": "USD",
+				"total": cart.totalPrice 
+			},
+			"description": "Pago de Camisetas."
+		}]
+	};
+
+
+	paypal.payment.create(create_payment_json, function (error, payment) {
+		if (error) {
+			throw error;
+		} else {
+			for(let i = 0; i<payment.links.length;i++){
+				if(payment.links[i].rel === 'approval_url'){
+					res.redirect(payment.links[i].href);
+				}
+			}
+			console.log("SUCCESS")
+			console.log(cart)
+
+			// var Estados = new estados ({
+
+			// 	usuario: req.user.username,
+			// 	correo: req.user.correo,
+			// 	cart: cart,
+			// 	direccion1:req.user.direccion1,
+			// 	direccion2:req.user.direccion2,
+			// 	orderstat:"En Espera",
+			// 	ordernum:new Date().getTime(),
+			// 	telefono:req.user.telefono
+			// });
+			// Estados.save(function(err, result){
+			// 	req.session.cart = undefined;
+			// })
+			var onum = new Date().getTime();
+			estados.insert(onum,"En Espera",cart,req.user.usuario,req.user.correo,req.user.direccion1,req.user.direccion2,req.user.telefono, function(error,user){
+				if(error){
+					console.log("s");
+					next(error);}
+				else if(user){
+					console.log("Error este");
+					var err = new Error('orden ya existente');
+					err.status = 401;
+					next(err);}
+				else{
+					console.log("Puede ir Bien");
+					req.session.cart=false;
+					console.log("Vas Bien");
+				}
+					
+			  });
+
+
+			console.log(req.session.cart)
+		}
+	});
+
+});
+
+router.get('/success', function(req, res){
+	let messages = req.flash('success');
+	const payerId = req.query.PayerID;
+	const paymentId = req.query.paymentId;
+	var cart = req.session.cart;
+
+	const execute_payment_json = {
+		"payer_id":payerId,
+		"transactions":[{
+			"amount":{
+				"currency": "USD",
+				"total": cart.totalPrice
+			}
+		}]
+
+	};
+
+
+	paypal.payment.execute(paymentId,execute_payment_json, function (error, payment) {
+		if (error) {
+			throw error;
+		} else {
+			console.log("Create Payment Response");
+			console.log("Success2");
+			// req.session.cart = null;
+			console.log(req.session.cart);
+		}
+	});
+
+	res.render('success',{messages: messages, hasSuccess: messages.length > 0 });
+});
+
 
 router.get('/producto/:productoid', function(req, res){
 
@@ -110,7 +231,11 @@ router.get('/producto/:productoid', function(req, res){
 	
 });
 
+router.get('/quienessomos',function(req,res){
+	res.render('quienessomos');
 
+
+})
 //REGISTRO
 
 router.get('/registro', function(req, res){
@@ -119,7 +244,7 @@ router.get('/registro', function(req, res){
 });
 
 router.post('/registroU', passport.authenticate('local.signup',{
-	successRedirect: '/login',
+	successRedirect: '/registro',
 	failureRedirect: '/registro',
 	failureFlash: true
 }));
@@ -132,6 +257,7 @@ router.get('/login',notLoggedIn, function(req, res){
 });
 
 router.get('/logout',isLoggedIn, function(req,res,next){
+	req.session.destroy();
 	req.logout();
 	res.redirect('/')
 });
@@ -156,23 +282,40 @@ router.post('/login', passport.authenticate('local.signin',{
 router.get('/perfil', isLoggedIn, function(req, res, next){
 
 	let messages = req.flash('error');
-	res.render('perfil',{
+	 
+	estados.find({usuario:req.user.usuario}, function(error,Estados){
+		if(error){
+			return res.write("error")
+		}
+		var cart;
+		Estados.forEach(function(Estados){
+			cart = new Cart(Estados.cart);
+			Estados.items = cart.generateArray();
+		});
 		
-		usuario:req.user.usuario,
-		nombre:req.user.nombre,
-        apellido:req.user.apellido,
-     	usuario:req.user.usuario,
-    	password:req.user.password,
-        correo:req.user.correo,
-        sexo:req.user.sexo,
-        direccion1:req.user.direccion1,
-        direccion2:req.user.direccion2,
-		telefono:req.user.telefono,
-		messages: messages, 
-		hasErrors: messages.length > 0,
-		csrfToken: req.csrfToken()
-	
+		res.render('perfil',{
+		
+			usuario:req.user.usuario,
+			nombre:req.user.nombre,
+			apellido:req.user.apellido,
+			 usuario:req.user.usuario,
+			password:req.user.password,
+			correo:req.user.correo,
+			sexo:req.user.sexo,
+			direccion1:req.user.direccion1,
+			direccion2:req.user.direccion2,
+			telefono:req.user.telefono,
+			messages: messages, 
+			Estados:Estados,
+			hasErrors: messages.length > 0,
+			csrfToken: req.csrfToken()
+		
+		});
+
 	});
+
+
+	
 });
 
 router.post('/editarP', isLoggedIn, function(req, res, next){
@@ -301,8 +444,8 @@ router.get('/adminstatus',isLoggedIn,function(req, res, next){
 		else if(!users)
 			users = [];
 		else
-		req.session.usuario = usuarios.username;
-			res.render('adminstatus',{usuario:req.session.usuario, modelo:users});
+		// req.session.usuario = usuarios.username;
+			res.render('adminstatus',{csrfToken: req.csrfToken(),usuario:req.user.usuario, modelo:users});
 	}); 
 });
 
@@ -322,7 +465,7 @@ router.post('/insertarP', function(req, res, next){
 
 // ACTUALIZAR
 router.post('/actualizarP', function(req, res, next){
-	estados.update(req.body.ordernum,req.body.orderstat,req.body.orderdate,req.body.usuario,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono,req.body.admin, function(error,msg){
+	estados.update(req.body.ordernum,req.body.orderstat,req.body.usuario,req.body.correo,req.body.direccion1,req.body.direccion2,req.body.telefono, function(error,msg){
 		console.log(req.body.ordernum);
 		if(error)
 			next(error);

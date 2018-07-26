@@ -53,7 +53,10 @@ block contenido
                                         input#password(type='password' name='password')
                                     
                                     td #{lista.admin}
-                                        input#admin(type='checkbox' name='admin' value='admin')
+                                        select#admin(name='admin')
+                                            option(value='', selected="selected") --
+                                            option(value="admin") Admin
+                                            option(value="user") User
                                     td 
                                         input(type='hidden', name='_csrf', value=csrfToken)
                                         input(type='submit',value='Actualizar').btn.btn-success
